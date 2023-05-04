@@ -1,0 +1,78 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    height: 100vh;
+    width: 100vw;
+    background-color: yellowgreen;
+}
+
+.navbar {
+    background-color: #6974a9;
+}
+
+header{
+    height: 5vh;
+    background-color: black;
+    width: 100%;
+}
+
+
+main{
+    height: 90%;
+    background: linear-gradient(#b9ede0,#77a8ac);
+    width: 100%;
+}
+
+.home-content {
+    height: auto;
+    min-height: 90vh;
+}
+
+.siteTop {
+    height: 60%;
+display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.siteBot {
+    height: 40%;
+    background: linear-gradient(#b9ede0,#77a8ac);
+    display: flex;
+    flex-direction: row;
+    border-radius: 25px;
+
+}
+
+.description{
+    display: flex;
+    text-align: center;
+    align-items: center;
+}
+footer{
+    height: 5vh;
+    background-color: #6974a9;
+}
+
+li {
+    list-style: none;
+}
+
+/* Page 2  */
+
+.img-card{
+    height: auto !important;
+    width: 90% !important;
+}
+
+img{
+    transition: 0.3s;
+}
+.card {
+    border-radius: 15px;
+    
+}
