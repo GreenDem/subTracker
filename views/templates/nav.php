@@ -12,11 +12,11 @@
             <span></span>
         </button>
         <div class="navlinks-container">
-            <a href="#" aria-current="page"></a>
-            <a href="#"></a>
-            <a href="#"></a>
-            <a href="#"></a>
-            <a href="#"></a>
+            <a href="#" aria-current="page">Bob</a>
+            <a href="#">Bob</a>
+            <a href="#">Bob</a>
+            <a href="#">Bob</a>
+            <a href="#">Bob</a>
         </div>
     </div>
 

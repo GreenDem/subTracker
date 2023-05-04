@@ -18,10 +18,7 @@ header {
     display: flex;
 }
 
-main{
-    min-height: 86vh;
-    width: 100%;
-}
+
 footer{
     background-color: black;
     width: 100%;
