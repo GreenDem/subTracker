@@ -12,7 +12,8 @@
     <!-- <link rel="stylesheet" href="/public/assets/style/home.css"> 
     <link rel="stylesheet" href="/public/assets/style/sub-home.css"> 
     <link rel="stylesheet" href="/public/assets/style/formIn.css"> -->
-    <link rel="stylesheet" href="/public/assets/style/formUp.css"> 
+    <!-- <link rel="stylesheet" href="/public/assets/style/formUp.css">  -->
+    <link rel="stylesheet" href="/public/assets/style/sub-add.css"> 
 
     <!-- a mettre en variable -->
 

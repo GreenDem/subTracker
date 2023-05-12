@@ -84,12 +84,16 @@ if (!empty($subDateEnd)) {
     }
 }
 
-}if ($_SERVER["REQUEST_METHOD"] != "POST" || !empty($error)) {
-    // ===========REDIRECTION APRES VALIDATION==========
-    header('location : /') ;
-} else {
-    // ======================SINON RENVOYER FORMULAIRE=========
-    include(__DIR__ . '/../views/user/display.php');
-}
+// }if ($_SERVER["REQUEST_METHOD"] != "POST" || !empty($error)) {
+//     // ===========REDIRECTION APRES VALIDATION==========
+//     header('location : /') ;
+// } else {
+//     // ======================SINON RENVOYER FORMULAIRE=========
+//     include(__DIR__ . '/../views/user/display.php');
+// }
 
-die;
+// die;
+}
+include __DIR__ . '/../views/templates/header.php';
+    include __DIR__ . '/../views/sub/sub-add.php';
+include __DIR__ . '/../views/templates/footer.php';
