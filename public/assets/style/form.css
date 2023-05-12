@@ -1,0 +1,76 @@
+.form-in-container {
+    height: 86vh;
+    width: 100%;
+    background-color: blueviolet;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: Roboto Flex, sans-serif;
+
+}
+
+.fieldset-in {
+    height: 40%;
+    width: 95%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fieldset-in fieldset {
+    height: 80%;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    border-radius: 5px;
+
+}
+
+.inner-fieldset-in {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 5px;
+}
+
+.inner-fieldset-in input {
+    border-radius: 5px;
+
+}
+
+.btn-in {
+    border: none;
+    min-width: 90px;
+    padding: 10px 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+    margin-top: 25px;
+}
+
+legend {
+    width: 40%;
+    text-align: center;
+}
+
+/* // Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+    .fieldset-in fieldset {
+        width: 50%;
+    }
+}
+
+/* // X-Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+    .fieldset-in fieldset {
+        width: 35%;
+        height: 100%;
+    }
+
+    .form-in-container {
+        font-size: 1.2rem;
+    }
+}

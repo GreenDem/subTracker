@@ -10,7 +10,8 @@
     <link rel="stylesheet" href="/public/assets/style/nav.css">
     <link rel="stylesheet" href="/public/assets/style/general.css">
     <!-- <link rel="stylesheet" href="/public/assets/style/home.css"> -->
-    <link rel="stylesheet" href="/public/assets/style/sub-home.css">
+    <!-- <link rel="stylesheet" href="/public/assets/style/sub-home.css"> -->
+    <link rel="stylesheet" href="/public/assets/style/form.css">
 
     <!-- a mettre en variable -->
 
