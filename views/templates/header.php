@@ -8,10 +8,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Roboto+Flex:opsz,wght@8..144,100;8..144,300;8..144,500;8..144,700;8..144,900&display=swap"rel="stylesheet"/>
     <link rel="stylesheet" href="/public/assets/style/nav.css">
-    <link rel="stylesheet" href="/public/assets/style/general.css">
-    <!-- <link rel="stylesheet" href="/public/assets/style/home.css"> -->
-    <!-- <link rel="stylesheet" href="/public/assets/style/sub-home.css"> -->
-    <link rel="stylesheet" href="/public/assets/style/form.css">
+    <link rel="stylesheet" href="/public/assets/style/general.css"> 
+    <!-- <link rel="stylesheet" href="/public/assets/style/home.css"> 
+    <link rel="stylesheet" href="/public/assets/style/sub-home.css"> 
+    <link rel="stylesheet" href="/public/assets/style/formIn.css"> -->
+    <link rel="stylesheet" href="/public/assets/style/formUp.css"> 
 
     <!-- a mettre en variable -->
 
