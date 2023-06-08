@@ -53,7 +53,6 @@
                 <div class="btn-add">
                     <button type="submit">AJOUTER</button>
                 </div>
-        </fieldset>
+            </fieldset>
+        </form>
 </div>
-
-</form>
