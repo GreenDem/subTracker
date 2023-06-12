@@ -5,7 +5,7 @@ class Labels {
     private string $_label;
     private string $_url;
     private string $_logo;
-    private int $_idCategories;
+    private int $_idCategory;
 
 
     /**
@@ -78,12 +78,42 @@ class Labels {
      * @return void
      */
     public function setIdcategory($idCategory): void{
-        $this->_idCategories = $idCategory;
+        $this->_idCategory = $idCategory;
     }
     /**
      * @return int
      */
     public function getCategory(): int{
-        return $this->_idCategories;
+        return $this->_idCategory;
+    }
+
+    public function add(): bool{
+        $db= connect();
+        // Ecriture de la requête
+        $sqlQuery = "INSERT INTO `labels` (`label`,`url`,`logo`,`idCategory`)
+        VALUES (:label, :labelUrl, :logo, :idCategory);";
+        // Préparation sth
+        $sth = $db->prepare($sqlQuery);
+        $sth->bindValue(':label', $this->_label);
+        $sth->bindValue(':labelUrl', $this->_url);
+        $sth->bindValue(':logo', $this->_logo);
+        $sth->bindValue(':idCategory', $this->_idCategory);
+        return $sth->execute();
+        }
+
+    public static function getAll() : array{
+        $db= connect();
+        $sql = 'SELECT * FROM `labels`;';
+        $sth = $db->query($sql);
+        return $sth->fetchall();
+    }
+
+    public static function get($id) : array{
+        $db= connect();
+        $sql = 'SELECT * FROM `labels`
+                WHERE `idLables = :id`;';
+        $sth = $db->prepare($sql);
+        $sth->bindValue(':id', $id);
+        return $sth->fetch();
     }
 }

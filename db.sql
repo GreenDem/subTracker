@@ -64,3 +64,4 @@ CREATE TABLE Users_subsciptions(
    FOREIGN KEY(IdUsers) REFERENCES Users(IdUsers),
    FOREIGN KEY(IdSubscriptions) REFERENCES Subscriptions(IdSubscriptions)
 );
+ 
