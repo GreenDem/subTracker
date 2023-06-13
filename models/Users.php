@@ -87,7 +87,7 @@ class Users
         return $this->_mail;
     }
 
-    // ******************** Id User ******************** //
+    // ******************** Password ******************** //
 
     /**
      * @param string $password
@@ -106,7 +106,7 @@ class Users
         return $this->_password;
     }
 
-    // ******************** Id User ******************** //
+    // ******************** Created AT ******************** //
     /**
      * @param string $created_at
      * 
@@ -124,7 +124,7 @@ class Users
         return $this->_created_at;
     }
 
-    // ******************** Id User ******************** //
+    // ******************** Updated AT ******************** //
     /**
      * @param string $updated_at
      * 
@@ -142,7 +142,7 @@ class Users
         return $this->_updated_at;
     }
 
-    // ******************** Id User ******************** //
+    // ******************** Validated At ******************** //
     /**
      * @param string $validated_at
      * 
@@ -192,10 +192,8 @@ class Users
     }
 
     // ******************** Get ALL ******************** //
-    /**
-     * @return array
-     */
-    public static function getAll(): array
+
+    public static function getAll(): array|false
     {
         $db = connect();
 
@@ -207,13 +205,12 @@ class Users
     }
 
     // ******************** Get ******************** //
-
     /**
      * @param int $id
      * 
      * @return array
      */
-    public static function get(int $id): array
+    public static function get(int $id): mixed
     {
         $db = connect();
 
@@ -222,7 +219,9 @@ class Users
 
         $sth = $db->prepare($sql);
 
-        $sth->bindValue(':id', $id);
+        $sth->bindValue(':id', $id, PDO::PARAM_INT);
+
+        $sth->execute();
 
         return $sth->fetch();
     }
@@ -249,7 +248,7 @@ class Users
         $sth->bindValue(':lastname', $this->_lastname);
         $sth->bindValue(':firstname', $this->_firstname);
         $sth->bindValue(':mail', $this->_mail);
-        $sth->bindValue(':id', $id);
+        $sth->bindValue(':id', $id, PDO::PARAM_INT);
 
         return $sth->execute();
     }
@@ -269,7 +268,7 @@ class Users
 
         $sth = $db->prepare($sqlQuery);
 
-        $sth->bindValue(':id', $id);
+        $sth->bindValue(':id', $id, PDO::PARAM_INT);
 
         return $sth->execute();
     }

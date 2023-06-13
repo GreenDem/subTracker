@@ -1,67 +1,72 @@
-CREATE TABLE Users(
-   IdUsers INT AUTO_INCREMENT,
+CREATE TABLE users(
+   idUser INT AUTO_INCREMENT,
    lastname VARCHAR(50) ,
    firstname VARCHAR(50) ,
-   mail VARCHAR(50) ,
-   password VARCHAR(50) ,
+   mail VARCHAR(120) ,
+   password VARCHAR(255) ,
    created_at DATETIME,
    updated_at DATETIME,
-   validate_at DATETIME,
-   PRIMARY KEY(IdUsers)
+   validated_at DATETIME,
+   PRIMARY KEY(idUser),
+   UNIQUE(mail)
 );
 
-CREATE TABLE Categories(
-   IdCategories INT AUTO_INCREMENT,
+CREATE TABLE categories(
+   idCategory INT AUTO_INCREMENT,
    category VARCHAR(50) ,
-   PRIMARY KEY(IdCategories)
+   PRIMARY KEY(idCategory)
 );
 
-CREATE TABLE Rates(
-   IdRates INT AUTO_INCREMENT,
+CREATE TABLE rates(
+   idRate INT AUTO_INCREMENT,
    rates VARCHAR(50) ,
-   PRIMARY KEY(IdRates)
+   PRIMARY KEY(idRate)
 );
 
-CREATE TABLE Labels(
-   IdLabel INT AUTO_INCREMENT,
+CREATE TABLE labels(
+   idLabel INT AUTO_INCREMENT,
    label VARCHAR(50) ,
    url VARCHAR(150) ,
-   logo VARCHAR(50) ,
-   IdCategories INT NOT NULL,
-   PRIMARY KEY(IdLabel),
-   FOREIGN KEY(IdCategories) REFERENCES Categories(IdCategories)
+   logo VARCHAR(150) ,
+   idCategory INT NOT NULL,
+   PRIMARY KEY(idLabel),
+   FOREIGN KEY(idCategory) REFERENCES categories(idCategory)
 );
 
-CREATE TABLE Subscriptions(
-   IdSubscriptions INT AUTO_INCREMENT,
+CREATE TABLE families(
+   idFamily INT AUTO_INCREMENT,
+   name VARCHAR(50) ,
+   idUser INT NOT NULL,
+   PRIMARY KEY(idFamily),
+   FOREIGN KEY(idUser) REFERENCES users(idUser)
+);
+
+CREATE TABLE subscriptions(
+   idSubscription INT AUTO_INCREMENT,
    date_start DATE,
    date_end DATE,
    date_payment DATE,
-   tariffs DECIMAL(5,2)  ,
+   price DECIMAL(5,2)  ,
    created_at DATETIME,
    updated_at DATETIME,
-   IdLabel INT NOT NULL,
-   IdRates INT NOT NULL,
-   PRIMARY KEY(IdSubscriptions),
-   FOREIGN KEY(IdLabel) REFERENCES Labels(IdLabel),
-   FOREIGN KEY(IdRates) REFERENCES Rates(IdRates)
+   idFamily INT,
+   idLabel INT NOT NULL,
+   idRate INT NOT NULL,
+   idUser INT,
+   PRIMARY KEY(idSubscription),
+   FOREIGN KEY(idFamily) REFERENCES families(idFamily),
+   FOREIGN KEY(idLabel) REFERENCES labels(idLabel),
+   FOREIGN KEY(idRate) REFERENCES rates(idRate),
+   FOREIGN KEY(idUser) REFERENCES users(idUser)
 );
 
-CREATE TABLE Logs(
-   IdLogs INT AUTO_INCREMENT,
-   created_at DATETIME,
+CREATE TABLE logs(
+   idLog INT AUTO_INCREMENT,
    tariffs DECIMAL(5,2)  ,
-   rates VARCHAR(50) ,
-   IdSubscriptions INT NOT NULL,
-   PRIMARY KEY(IdLogs),
-   FOREIGN KEY(IdSubscriptions) REFERENCES Subscriptions(IdSubscriptions)
+   created_at DATETIME,
+   idRate INT NOT NULL,
+   idSubscription INT NOT NULL,
+   PRIMARY KEY(idLog),
+   FOREIGN KEY(idRate) REFERENCES rates(idRate),
+   FOREIGN KEY(idSubscription) REFERENCES subscriptions(idSubscription)
 );
-
-CREATE TABLE Users_subsciptions(
-   IdUsers INT,
-   IdSubscriptions INT,
-   PRIMARY KEY(IdUsers, IdSubscriptions),
-   FOREIGN KEY(IdUsers) REFERENCES Users(IdUsers),
-   FOREIGN KEY(IdSubscriptions) REFERENCES Subscriptions(IdSubscriptions)
-);
- 

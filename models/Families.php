@@ -85,9 +85,9 @@ class Families
 
     // ******************** Get All ******************** //
     /**
-     * @return array
+     * @return mixed
      */
-    public static function getAll(): array
+    public static function getAll(): array|false
     {
         $db = connect();
         $sql = 'SELECT * FROM `families`;';
@@ -104,10 +104,16 @@ class Families
     public static function get(int $id): array
     {
         $db = connect();
+
         $sql = 'SELECT * FROM `families`
                 WHERE `idFamily` = :id ;';
+
         $sth = $db->prepare($sql);
-        $sth->bindValue(':id', $id);
+
+        $sth->bindValue(':id', $id, PDO::PARAM_INT);
+
+        $sth->execute();
+
         return $sth->fetch();
     }
     
@@ -129,8 +135,8 @@ class Families
         $sth = $db->prepare($sqlQuery);
 
         $sth->bindValue(':familyName', $this->_name);
-        $sth->bindValue(':idUser', $this->_idUser);
-        $sth->bindValue(':id', $id);
+        $sth->bindValue(':idUser', $this->_idUser, PDO::PARAM_INT);
+        $sth->bindValue(':id', $id, PDO::PARAM_INT);
 
         return $sth->execute();
     }
@@ -150,7 +156,7 @@ class Families
 
         $sth = $db->prepare($sqlQuery);
 
-        $sth->bindValue(':idFamily', $id);
+        $sth->bindValue(':idFamily', $id, PDO::PARAM_INT);
 
         return $sth->execute();
     }

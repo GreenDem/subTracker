@@ -7,7 +7,7 @@ class Logs
 
     private int $_idLogs;
     private string $_created_at;
-    private float $_tariffs;
+    private float $_price;
     private string $_idRate;
     private int $_idSubscription;
 
@@ -50,23 +50,23 @@ class Logs
         return $this->_created_at;
     }
 
-    // ******************** Tariffs ******************** //
+    // ******************** price ******************** //
 
     /**
-     * @param float $tariffs
+     * @param float $price
      * 
      * @return void
      */
-    public function setTariffs(float $tariffs): void
+    public function setPrice(float $price): void
     {
-        $this->_tariffs = $tariffs;
+        $this->_price = $price;
     }
     /**
      * @return float
      */
-    public function getTariffs(): float
+    public function getPrice(): float
     {
-        return $this->_tariffs;
+        return $this->_price;
     }
 
         // ******************** id Rate ******************** //
@@ -118,22 +118,21 @@ class Logs
     {
         $db = connect();
         // Ecriture de la requête
-        $sqlQuery = "INSERT INTO `logs` (`tariffs`, `idRate`, `idSubscription`)
-                    VALUES (:tariffs, :idRate, :idSubscription);";
+        $sqlQuery = "INSERT INTO `logs` (`price`, `idRate`, `idSubscription`)
+                    VALUES (:price, :idRate, :idSubscription);";
         // Préparation sth
         $sth = $db->prepare($sqlQuery);
-        $sth->bindValue(':tariffs', $this->_tariffs);
+        $sth->bindValue(':price', $this->_price);
         $sth->bindValue(':idRate', $this->_idRate);
         $sth->bindValue(':idSubscription', $this->_idSubscription);
         return $sth->execute();
     }
 
     // ******************** Get ALL ******************** //
-
     /**
-     * @return array
+     * @return mixed
      */
-    public static function getAll(): array
+    public static function getAll(): array|false
     {
         $db = connect();
         $sql = 'SELECT * FROM `logs`;';
@@ -148,13 +147,19 @@ class Logs
      * 
      * @return array
      */
-    public static function get(int $id): array
+    public static function get(int $id): mixed
     {
         $db = connect();
+
         $sql = 'SELECT * FROM `logs`
                 WHERE `idLog` = :id ;';
+
         $sth = $db->prepare($sql);
-        $sth->bindValue(':id', $id);
+
+        $sth->bindValue(':id', $id,PDO::PARAM_INT);
+
+        $sth->execute();
+
         return $sth->fetch();
     }
 
@@ -170,7 +175,7 @@ class Logs
 
         // Ecriture de la requête
         $sqlQuery = "UPDATE `logs` 
-                    SET `tariffs`=:tariffs,
+                    SET `price`=:price,
                     `idRate`=:idRate,
                     `idSubscription`=:idSubscription
                     WHERE `idLog`= :id ;'";
@@ -178,10 +183,10 @@ class Logs
         // Préparation sth
         $sth = $db->prepare($sqlQuery);
 
-        $sth->bindValue(':tariffs', $this->_tariffs);
+        $sth->bindValue(':price', $this->_price);
         $sth->bindValue(':idRate', $this->_idRate);
         $sth->bindValue(':idSubscription', $this->_idSubscription);
-        $sth->bindValue(':id', $id);
+        $sth->bindValue(':id', $id, PDO::PARAM_INT);
 
         return $sth->execute();
     }
@@ -201,7 +206,7 @@ class Logs
 
         $sth = $db->prepare($sqlQuery);
 
-        $sth->bindValue(':id', $id);
+        $sth->bindValue(':id', $id, PDO::PARAM_INT);
 
         return $sth->execute();
     }

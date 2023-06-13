@@ -6,7 +6,7 @@
                 <legend>Inscription</legend>
                 <div class="form-up-inner">
                         <label for="mail" class="form-label">Email address</label>
-                        <input type="email" class="" id="email" name="mail" required>
+                        <input type="email" class="" id="mail" name="mail" required>
                         <p class="red"><?= $error['mail'] ?? "" ?></p>
                         <br>
 
@@ -17,18 +17,18 @@
                         <br>
 
                         <label for="passwordCtr" class="">Confirmation</label>
-                        <input type="password" class="" id="passwordCtr" required name="Ctr">
+                        <input type="password" class="" id="passwordCtr" required name="passwordCtr" minlength="8">
                         <p class="red"><?= $error['password'] ?? "" ?></p>
                         <br>
 
-                        <label for="lastName" class="form-label">Nom</label>
-                        <input type="text" class="" id="lastName" name="lastName" pattern=<?= $regex['lastName'] ?> required>
-                        <p class="red"><?= $error['lastName'] ?? '' ?></p>
+                        <label for="lastname" class="form-label">Nom</label>
+                        <input type="text" class="" id="lastname" name="lastname" pattern=<?= $regex['lastName'] ?> required>
+                        <p class="red"><?= $error['lastname'] ?? '' ?></p>
                         <br>
 
-                        <label for="firstName" class="form-label">Prénom</label>
-                        <input type="text" class="" id="firstName" name="lastName" pattern=<?= $regex['lastName'] ?> required>
-                        <p class="red"><?= $error['firstName'] ?? '' ?></p>
+                        <label for="firstname" class="form-label">Prénom</label>
+                        <input type="text" class="" id="firstname" name="lastname" pattern=<?= $regex['lastName'] ?> required>
+                        <p class="red"><?= $error['firstname'] ?? '' ?></p>
                         
 
                 </div>

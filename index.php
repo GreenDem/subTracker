@@ -4,12 +4,12 @@
     $action = $_GET['action'] ?? '/';
 
     $ctrl = match ($action) {
-        '/' => '/controllers/list-patientsCtr.php',
-        'add' => '/controllers/add-patientsCtr.php',
-        'list' => '/controllers/list-patientsCtr.php',
-        'profil' => '/controllers/profil-patientsCtr.php',
-        'rdv' => '/controllers/add-aptmCtr.php',
-        'listRdv' => '/controllers/list-aptmCtr.php',
+        '/' => '/controllers/homeCtr.php',
+        'signIn' => '/controllers/users-signInCtr.php',
+        'signUp' => '/controllers/users-signUpCtr.php',
+        'subHome' => '/controllers/sub-homeCtr.php',
+        'add' => '/controllers/sub-addCtr.php',
+        'dash' => '/controllers/dashboardCtr.php',
         'detailRdv' => '/controllers/detail-aptmCtr.php',
         'both' => '/controllers/add-bothCtr.php',
         

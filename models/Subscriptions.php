@@ -9,7 +9,7 @@ class Subscriptions
     private string $_date_start;
     private string $_date_end;
     private string $_date_payment;
-    private int $_tariffs;
+    private int $_price;
     private string $_created_at;
     private string $_updated_at;
     private int $_idFamily;
@@ -90,22 +90,22 @@ class Subscriptions
         return $this->_date_payment;
     }
 
-    // ******************** Tariffs ******************** //
+    // ******************** PRICE ******************** //
     /**
-     * @param float $tariffs
+     * @param float $price
      * 
      * @return void
      */
-    public function setTariffs(float $tariffs): void
+    public function setprice(float $price): void
     {
-        $this->_tariffs = $tariffs;
+        $this->_price = $price;
     }
     /**
      * @return float
      */
-    public function getTariffs(): float
+    public function getprice(): float
     {
-        return $this->_tariffs;
+        return $this->_price;
     }
 
     // ******************** Created At ******************** //
@@ -229,7 +229,7 @@ class Subscriptions
             `date_start`,
             `date_end`, 
             `date_payment`, 
-            `tariffs`, 
+            `price`, 
             `idFamily`,
             `idLabel`, 
             `idRate`, 
@@ -237,7 +237,7 @@ class Subscriptions
             VALUES (:date_start,
             :date_end, 
             :date_payment, 
-            :tariffs,
+            :price,
             :idFamily,
             :idLabel,
             :idRate,
@@ -249,20 +249,21 @@ class Subscriptions
         $sth->bindValue(':date_start', $this->_date_start);
         $sth->bindValue(':date_end', $this->_date_end);
         $sth->bindValue(':date_payment', $this->_date_payment);
-        $sth->bindValue(':tariffs', $this->_tariffs);
-        $sth->bindValue(':idFamily', $this->_idFamily);
-        $sth->bindValue(':idLabel', $this->_idLabel);
-        $sth->bindValue(':idRate', $this->_idRate);
-        $sth->bindValue(':idUser', $this->_idUser);
+        $sth->bindValue(':price', $this->_price);
+        $sth->bindValue(':idFamily', $this->_idFamily, PDO::PARAM_INT);
+        $sth->bindValue(':idLabel', $this->_idLabel, PDO::PARAM_INT);
+        $sth->bindValue(':idRate', $this->_idRate, PDO::PARAM_INT);
+        $sth->bindValue(':idUser', $this->_idUser, PDO::PARAM_INT);
 
         return $sth->execute();
     }
 
     // ******************** Get ALL ******************** //
+
     /**
-     * @return array
+     * @return array|false
      */
-    public static function getAll(): array
+    public static function getAll(): array|false
     {
         $db = connect();
         $sql = 'SELECT * FROM `subscriptions`;';
@@ -274,15 +275,21 @@ class Subscriptions
     /**
      * @param int $id
      * 
-     * @return array
+     * @return mixed
      */
-    public static function get(int $id): array
+    public static function get(int $id): object|false
     {
         $db = connect();
+
         $sql = 'SELECT * FROM `subscriptions`
                 WHERE `idSubscription` = :id ;';
+
         $sth = $db->prepare($sql);
-        $sth->bindValue(':id', $id);
+
+        $sth->bindValue(':id', $id, PDO::PARAM_INT);
+
+        $sth->execute();
+
         return $sth->fetch();
     }
 
@@ -301,7 +308,7 @@ class Subscriptions
                     SET `date_start`=:date_start,
                     `date_end`=:date_end,
                     `date_payment`=:date_payment,
-                    `tariffs`=:tariffs,
+                    `price`=:price,
                     `idFamily`=:idFamily,
                     `idLabel`=:idLabel,
                     `idRate`=:idRate,
@@ -314,12 +321,12 @@ class Subscriptions
         $sth->bindValue(':date_start', $this->_date_start);
         $sth->bindValue(':date_end', $this->_date_end);
         $sth->bindValue(':date_payment', $this->_date_payment);
-        $sth->bindValue(':tariffs', $this->_tariffs);
-        $sth->bindValue(':idFamily', $this->_idFamily);
-        $sth->bindValue(':idLabel', $this->_idLabel);
-        $sth->bindValue(':idRate', $this->_idRate);
-        $sth->bindValue(':idUser', $this->_idUser);
-        $sth->bindValue(':id', $id);
+        $sth->bindValue(':price', $this->_price);
+        $sth->bindValue(':idFamily', $this->_idFamily, PDO::PARAM_INT);
+        $sth->bindValue(':idLabel', $this->_idLabel, PDO::PARAM_INT);
+        $sth->bindValue(':idRate', $this->_idRate,PDO::PARAM_INT);
+        $sth->bindValue(':idUser', $this->_idUser,PDO::PARAM_INT);
+        $sth->bindValue(':id', $id,PDO::PARAM_INT);
 
         return $sth->execute();
     }
@@ -339,7 +346,7 @@ class Subscriptions
 
         $sth = $db->prepare($sqlQuery);
 
-        $sth->bindValue(':id', $id);
+        $sth->bindValue(':id', $id,PDO::PARAM_INT);
 
         return $sth->execute();
     }

@@ -7,56 +7,57 @@ if ($_SERVER['REQUEST_METHOD']== 'POST') {
 // ==============================REQUIS=================================
 
 
-// ========TITRE========
-$subTitile = filter_input(INPUT_POST, 'subTitile', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-if (empty($subTitile)){
-    $error['subTitile']= "Le champ ne peut pas être vide";
+// ========         LABEL       =========
+
+$subTitile = filter_input(INPUT_POST, 'label', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+if (empty($label)){
+    $error['label']= "Le champ ne peut pas être vide";
 } else {
-    if (strlen($subTitile) > 56){
-        $error['subTitile']= "Le titre est trop long";
+    if (strlen($label) > 50){
+        $error['label']= "Le titre est trop long";
     }
 }
 
-// ==========CATEGORY=========
+// ==========     CATEGORY      =========
 $category= $_POST['category'];
 if (empty($category)){
     $error['category']= "Le champ ne peut pas être vide";
 } else{
-    if (in_array($category, CATEGORY)== false){
+    if (in_array($category, CATEGORY) == false){
         $error['category'] = 'Une erreur est survenue';
     }
 }
 
-// =============RATE================
+// =============RATES================
 
-$category= $_POST['rate'];
-if (empty($rate)){
-    $error['rate']= "Champ Obligatoire";
+$category= $_POST['rates'];
+if (empty($rates)){
+    $error['rates']= "Champ Obligatoire";
 } else{
-    if (in_array($rate, RATE)== false){
-        $error['rate'] = 'Une erreur est survenue';
+    if (in_array($rates, RATE)== false){
+        $error['rates'] = 'Une erreur est survenue';
     }
 }
 
-// ===============DUE DATE=================
+// ===============DUE PAYMENT=================
 
-$subDateDue = filter_input(INPUT_POST, 'subDateDue', FILTER_SANITIZE_NUMBER_INT);
-if (!empty($subDateDue)) {
-    $isOk = filter_var($subDateDue, FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => '/' . $regex['date'] . '/']]);
+$date_payment = filter_input(INPUT_POST, 'date_payment', FILTER_SANITIZE_NUMBER_INT);
+if (!empty($date_payment)) {
+    $isOk = filter_var($date_payment, FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => '/' . $regex['date'] . '/']]);
     if (!$isOk) {
-        $error["subDateDue"] = "La date entrée n'est pas valide!";
+        $error["date_payment"] = "La date entrée n'est pas valide!";
     }
 } else {
-    $error["subDateDue"] = "Champ Obligatoire";
+    $error["date_payment"] = "Champ Obligatoire";
 }
 
-// ===============TARIFF================
-$tariff = filter_input(INPUT_POST, $tariff, FILTER_SANITIZE_NUMBER_INT);
-if (empty($tariff)){
-    $error['tariff']= "Le champ ne peut pas être vide";
+// ===============      PRICE         ================ FLOAT(5,2)
+$tariff = filter_input(INPUT_POST, 'price', FILTER_SANITIZE_NUMBER_INT);
+if (empty($price)){
+    $error['price']= "Le champ ne peut pas être vide";
 }else {
-    if ($tariff < 0) {
-        $error['tariff']= "Le tarif ne peut pas être négatif";
+    if ($price < 0) {
+        $error['price']= "Le tarif ne peut pas être négatif";
     }
 }
 
@@ -66,21 +67,21 @@ if (empty($tariff)){
 // ========================= NO REQUIRED ===============================
 
 
-// =======================DATE DE DEBUT=======================
-$subDateStart = filter_input(INPUT_POST, 'subDateStart', FILTER_SANITIZE_NUMBER_INT);
-if (!empty($subDateStart)) {
-    $isOk = filter_var($subDateStart, FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => '/' . $regex['date'] . '/']]);
+// =======================DATE START=======================
+$date_start = filter_input(INPUT_POST, 'date_start', FILTER_SANITIZE_NUMBER_INT);
+if (!empty($date_start)) {
+    $isOk = filter_var($date_start, FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => '/' . $regex['date'] . '/']]);
     if (!$isOk) {
-        $error["subDateStart"] = "La date entrée n'est pas valide!";
+        $error["date_start"] = "La date entrée n'est pas valide!";
     }
 }
 
-// ====================== DATE DE FIN ==============================
-$subDateEnd = filter_input(INPUT_POST, 'subDateEnd', FILTER_SANITIZE_NUMBER_INT);
-if (!empty($subDateEnd)) {
-    $isOk = filter_var($subDateEnd, FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => '/' . $regex['date'] . '/']]);
+// ====================== DATE END ==============================
+$date_end = filter_input(INPUT_POST, 'date_end', FILTER_SANITIZE_NUMBER_INT);
+if (!empty($date_end)) {
+    $isOk = filter_var($date_end, FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => '/' . $regex['date'] . '/']]);
     if (!$isOk) {
-        $error["subDateEnd"] = "La date entrée n'est pas valide!";
+        $error["date_end"] = "La date entrée n'est pas valide!";
     }
 }
 

@@ -7,9 +7,9 @@
 
             <legend>Ajouter un abonnement</legend>
             <div class="form-add-inner">
-                <label for="subTitile">Titre</label>
-                <input type="text" name="subTitile" id="subTitile" maxlength="56" required>
-                <p><?= $error["subDateStart"] ?? "" ?></p><br>
+                <label for="label">Titre</label>
+                <input type="text" name="label" id="label" maxlength="50" required>
+                <p><?= $error["label"] ?? "" ?></p><br>
                 <!-- Link un avatar a une catégorie Pour l affichage -->
 
 
@@ -25,29 +25,29 @@
                 <!-- Au moins 1 obligatoire entre le start et le due définir varaible 
                                 si une seul, sinon choisirs due date pour les calculs isset ||-->
 
-                <label for="subDateStart">Date de Début</label>
-                <input type="date" name="subDateStart" id="subDateStart">
+                <label for="date_start">Date de Début</label>
+                <input type="date" name="date_start" id="date_start">
 
-                <label for="subDateDue">Date de l'échéance</label>
-                <input type="date" name="subDateDue" id="subDateDue" required>
-                <p><?= $error["subDateDue"] ?? "" ?></p><br>
+                <label for="date_payment">Date de l'échéance</label>
+                <input type="date" name="date_payment" id="date_payment" required>
+                <p><?= $error["date_payment"] ?? "" ?></p><br>
 
 
-                <label for="subDateEnd">Date de fin</label>
-                <input type="date" name="subDateEnd" id="subDateEnd">
-                <label for="rate">Fréquence de Paiement</label>
-                <select name="rate" id="rate" required>
+                <label for="date_end">Date de fin</label>
+                <input type="date" name="date_end" id="date_end">
+                <label for="rates">Fréquence de Paiement</label>
+                <select name="rates" id="rates" required>
                     <?php
                     foreach (RATE as $key => $value) { ?>
                         <option><?= $value ?></option>
                     <?php } ?>
                 </select>
-                <p><?= $error["rate"] ?? "" ?></p> <br>
+                <p><?= $error["rates"] ?? "" ?></p> <br>
 
 
-                <label for="tariff">Tarif</label>
-                <input type="number" name="tariff" id="tariff" required>
-                <p><?= $error["tariff"] ?? "" ?>
+                <label for="price">Tarif</label>
+                <input type="number" name="price" id="price" required>
+                <p><?= $error["price"] ?? "" ?>
 
 
                 <div class="btn-add">

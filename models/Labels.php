@@ -127,16 +127,15 @@ class Labels
         $sth->bindValue(':label', $this->_label);
         $sth->bindValue(':labelUrl', $this->_url);
         $sth->bindValue(':logo', $this->_logo);
-        $sth->bindValue(':idCategory', $this->_idCategory);
+        $sth->bindValue(':idCategory', $this->_idCategory, PDO::PARAM_INT);
         return $sth->execute();
     }
 
     // ******************** Get ALL ******************** //
-
     /**
-     * @return array
+     * @return mixed
      */
-    public static function getAll(): array
+    public static function getAll(): array|false
     {
         $db = connect();
         $sql = 'SELECT * FROM `labels`;';
@@ -155,10 +154,16 @@ class Labels
     public static function get(int $id): array
     {
         $db = connect();
+
         $sql = 'SELECT * FROM `labels`
                 WHERE `idLables` = :id ;';
+
         $sth = $db->prepare($sql);
-        $sth->bindValue(':id', $id);
+
+        $sth->bindValue(':id', $id, PDO::PARAM_INT);
+
+        $sth->execute();
+
         return $sth->fetch();
     }
 
@@ -184,9 +189,9 @@ class Labels
         $sth->bindValue(':label', $this->_label);
         $sth->bindValue(':labelUrl', $this->_url);
         $sth->bindValue(':logo', $this->_logo);
-        $sth->bindValue(':idCategory', $this->_idCategory);
+        $sth->bindValue(':idCategory', $this->_idCategory, PDO::PARAM_INT);
 
-        $sth->bindValue(':id', $id);
+        $sth->bindValue(':id', $id, PDO::PARAM_INT);
 
         return $sth->execute();
     }
@@ -206,7 +211,7 @@ class Labels
 
         $sth = $db->prepare($sqlQuery);
 
-        $sth->bindValue(':id', $id);
+        $sth->bindValue(':id', $id, PDO::PARAM_INT);
 
         return $sth->execute();
     }

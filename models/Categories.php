@@ -62,9 +62,9 @@ class Categories
 
     // ******************** Get ALL ******************** //
     /**
-     * @return array
+     * @return mixed
      */
-    public static function getAll(): array
+    public static function getAll(): array|false
     {
         $db = connect();
         $sql = 'SELECT * FROM `categories`;';
@@ -78,13 +78,19 @@ class Categories
      * 
      * @return array
      */
-    public static function get($id): array
+    public static function get(int $id): array
     {
         $db = connect();
+
         $sql = 'SELECT * FROM `categories`
                 WHERE `idcategory` = :id ;';
+
         $sth = $db->prepare($sql);
-        $sth->bindValue(':id', $id);
+
+        $sth->bindValue(':id', $id, PDO::PARAM_INT);
+
+        $sth->execute();
+
         return $sth->fetch();
     }
     // ******************** Update ******************** //
@@ -104,7 +110,7 @@ class Categories
         $sth = $db->prepare($sqlQuery);
 
         $sth->bindValue(':category', $this->_category);
-        $sth->bindValue(':id', $id);
+        $sth->bindValue(':id', $id, PDO::PARAM_INT);
 
         return $sth->execute();
     }
@@ -124,7 +130,7 @@ class Categories
 
         $sth = $db->prepare($sqlQuery);
 
-        $sth->bindValue(':idCategory', $id);
+        $sth->bindValue(':idCategory', $id, PDO::PARAM_INT);
 
         return $sth->execute();
     }

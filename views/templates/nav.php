@@ -1,7 +1,7 @@
 <nav>
 
-    <a href="#" class="nav-icon" aria-label="homepage" aria-current="page">
-        <img src="ressources/chat.svg" alt="chat icon" />
+    <a href="/" class="nav-icon" aria-label="homepage" aria-current="page">
+        <img src="/public/assets/img/logo.png" alt="chat icon" />
         <span>SubTracker</span>
     </a>
 
@@ -12,9 +12,9 @@
             <span></span>
         </button>
         <div class="navlinks-container">
-            <a href="#" aria-current="page">Bob</a>
-            <a href="#">Bob</a>
-            <a href="#">Bob</a>
+            <a href="/index.php?action=subHome" aria-current="page">Sub Home</a>
+            <a href="/index.php?action=add">Ajouter</a>
+            <a href="/index.php?action=dash">DashBoard</a>
             <a href="#">Bob</a>
             <a href="#">Bob</a>
         </div>
@@ -25,8 +25,8 @@
             <img src="/public/assets/img/user.svg" alt="user icon" />
         </a>
         <div class="sign-btns">
-            <button type="button">Sign In</button>
-            <button type="button">Sign Up</button>
+            <button type="button" onclick="location.href='index.php?action=signIn'">Sign In</button>
+            <button type="button" onclick="location.href='index.php?action=signUp'">Sign Up</button>
         </div>
     </div>
 

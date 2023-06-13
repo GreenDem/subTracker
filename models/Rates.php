@@ -48,7 +48,6 @@ class Rates
     }
 
     // ******************** ADD ******************** //
-
     /**
      * @return bool
      */
@@ -65,11 +64,10 @@ class Rates
     }
 
     // ******************** Get ALL ******************** //
-
     /**
-     * @return array
+     * @return mixed
      */
-    public static function getAll(): array
+    public static function getAll(): array|false
     {
         $db = connect();
         $sql = 'SELECT * FROM `rates`;';
@@ -84,13 +82,19 @@ class Rates
      * 
      * @return array
      */
-    public static function get(int $id): array
+    public static function get(int $id): mixed
     {
         $db = connect();
+
         $sql = 'SELECT * FROM `rates`
                 WHERE `idRates` = :id ;';
+
         $sth = $db->prepare($sql);
-        $sth->bindValue(':id', $id);
+
+        $sth->bindValue(':id', $id,PDO::PARAM_INT);
+
+        $sth->execute();
+
         return $sth->fetch();
     }
 
@@ -113,7 +117,7 @@ class Rates
         $sth = $db->prepare($sqlQuery);
 
         $sth->bindValue(':rates', $this->_rates);
-        $sth->bindValue(':id', $id);
+        $sth->bindValue(':id', $id,PDO::PARAM_INT);
 
         return $sth->execute();
     }
@@ -133,7 +137,7 @@ class Rates
 
         $sth = $db->prepare($sqlQuery);
 
-        $sth->bindValue(':id', $id);
+        $sth->bindValue(':id', $id,PDO::PARAM_INT);
 
         return $sth->execute();
     }
