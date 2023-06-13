@@ -152,9 +152,58 @@ class Logs
     {
         $db = connect();
         $sql = 'SELECT * FROM `logs`
-                WHERE `idLogs` = :id ;';
+                WHERE `idLog` = :id ;';
         $sth = $db->prepare($sql);
         $sth->bindValue(':id', $id);
         return $sth->fetch();
     }
+
+            // ******************** Update ******************** //
+    /**
+     * @param int $id
+     * 
+     * @return bool
+     */
+    public function update(int $id): bool
+    {
+        $db = connect();
+
+        // Ecriture de la requête
+        $sqlQuery = "UPDATE `logs` 
+                    SET `tariffs`=:tariffs,
+                    `idRate`=:idRate,
+                    `idSubscription`=:idSubscription
+                    WHERE `idLog`= :id ;'";
+
+        // Préparation sth
+        $sth = $db->prepare($sqlQuery);
+
+        $sth->bindValue(':tariffs', $this->_tariffs);
+        $sth->bindValue(':idRate', $this->_idRate);
+        $sth->bindValue(':idSubscription', $this->_idSubscription);
+        $sth->bindValue(':id', $id);
+
+        return $sth->execute();
+    }
+
+    // ******************** Delete ******************** //
+    /**
+     * @param int $id
+     * 
+     * @return bool
+     */
+    public static function delete(int $id): bool
+    {
+        $db = connect();
+
+        $sqlQuery = 'DELETE FROM `logs`
+        WHERE `idLog` = :id ;';
+
+        $sth = $db->prepare($sqlQuery);
+
+        $sth->bindValue(':id', $id);
+
+        return $sth->execute();
+    }
+
 }

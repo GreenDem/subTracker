@@ -161,4 +161,54 @@ class Labels
         $sth->bindValue(':id', $id);
         return $sth->fetch();
     }
+
+                // ******************** Update ******************** //
+    /**
+     * @param int $id
+     * 
+     * @return bool
+     */
+    public function update(int $id): bool
+    {
+        $db = connect();
+
+        $sqlQuery = "UPDATE `logs` 
+                    SET `label`=:label,
+                    `labelUrl`=:labelUrl,
+                    `logo`=:logo
+                    `idCategory`=:idCategory
+                    WHERE `idLog`= :id ;'";
+
+        $sth = $db->prepare($sqlQuery);
+
+        $sth->bindValue(':label', $this->_label);
+        $sth->bindValue(':labelUrl', $this->_url);
+        $sth->bindValue(':logo', $this->_logo);
+        $sth->bindValue(':idCategory', $this->_idCategory);
+
+        $sth->bindValue(':id', $id);
+
+        return $sth->execute();
+    }
+
+    // ******************** Delete ******************** //
+    /**
+     * @param int $id
+     * 
+     * @return bool
+     */
+    public static function delete(int $id): bool
+    {
+        $db = connect();
+
+        $sqlQuery = 'DELETE FROM `labels`
+        WHERE `idLabel` = :id ;';
+
+        $sth = $db->prepare($sqlQuery);
+
+        $sth->bindValue(':id', $id);
+
+        return $sth->execute();
+    }
+
 }

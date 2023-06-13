@@ -217,21 +217,44 @@ class Subscriptions
         return $this->_idUser;
     }
 
-        // ******************** ADD ******************** // --- id ??
+    // ******************** ADD ******************** // --- parametre nullable a lors de l'hydratation
     /**
      * @return bool
      */
     public function add(): bool
     {
         $db = connect();
-        // Ecriture de la requête
-        $sqlQuery = "INSERT INTO `subscriptions` (`date_start`, `date_payment`, `tariffs`)
-                    VALUES (:date_start, :date_payment, :tariffs);";
-        // Préparation sth
+
+        $sqlQuery = "INSERT INTO `subscriptions` (
+            `date_start`,
+            `date_end`, 
+            `date_payment`, 
+            `tariffs`, 
+            `idFamily`,
+            `idLabel`, 
+            `idRate`, 
+            `idUser` )
+            VALUES (:date_start,
+            :date_end, 
+            :date_payment, 
+            :tariffs,
+            :idFamily,
+            :idLabel,
+            :idRate,
+            :idUser
+            );";
+
         $sth = $db->prepare($sqlQuery);
+
         $sth->bindValue(':date_start', $this->_date_start);
+        $sth->bindValue(':date_end', $this->_date_end);
         $sth->bindValue(':date_payment', $this->_date_payment);
         $sth->bindValue(':tariffs', $this->_tariffs);
+        $sth->bindValue(':idFamily', $this->_idFamily);
+        $sth->bindValue(':idLabel', $this->_idLabel);
+        $sth->bindValue(':idRate', $this->_idRate);
+        $sth->bindValue(':idUser', $this->_idUser);
+
         return $sth->execute();
     }
 
@@ -261,5 +284,63 @@ class Subscriptions
         $sth = $db->prepare($sql);
         $sth->bindValue(':id', $id);
         return $sth->fetch();
+    }
+
+    // ******************** Update ******************** //
+    /**
+     * @param int $id
+     * 
+     * @return bool
+     */
+    public function update(int $id): bool
+    {
+        $db = connect();
+
+        // Ecriture de la requête
+        $sqlQuery = "UPDATE `users` 
+                    SET `date_start`=:date_start,
+                    `date_end`=:date_end,
+                    `date_payment`=:date_payment,
+                    `tariffs`=:tariffs,
+                    `idFamily`=:idFamily,
+                    `idLabel`=:idLabel,
+                    `idRate`=:idRate,
+                    `idUser`=:idUser
+                    WHERE `idSubscription`= :id ;'";
+
+        // Préparation sth
+        $sth = $db->prepare($sqlQuery);
+
+        $sth->bindValue(':date_start', $this->_date_start);
+        $sth->bindValue(':date_end', $this->_date_end);
+        $sth->bindValue(':date_payment', $this->_date_payment);
+        $sth->bindValue(':tariffs', $this->_tariffs);
+        $sth->bindValue(':idFamily', $this->_idFamily);
+        $sth->bindValue(':idLabel', $this->_idLabel);
+        $sth->bindValue(':idRate', $this->_idRate);
+        $sth->bindValue(':idUser', $this->_idUser);
+        $sth->bindValue(':id', $id);
+
+        return $sth->execute();
+    }
+
+    // ******************** Delete ******************** //
+    /**
+     * @param int $id
+     * 
+     * @return bool
+     */
+    public static function delete(int $id): bool
+    {
+        $db = connect();
+
+        $sqlQuery = 'DELETE FROM `subscriptions`
+        WHERE `idSubscription` = :id ;';
+
+        $sth = $db->prepare($sqlQuery);
+
+        $sth->bindValue(':id', $id);
+
+        return $sth->execute();
     }
 }

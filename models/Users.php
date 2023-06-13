@@ -162,35 +162,47 @@ class Users
     }
 
 
-            // ******************** ADD ******************** // 
+    // ******************** ADD ******************** // 
     /**
      * @return bool
      */
     public function add(): bool
     {
         $db = connect();
-        // Ecriture de la requête
-        $sqlQuery = "INSERT INTO `users` (`lastname`, `firstname`, `mail`, `password`)
-                    VALUES (:lastname, :firstname, :mail, :userPassword);";
-        // Préparation sth
+
+        $sqlQuery = "INSERT INTO `users` (
+            `lastname`, 
+            `firstname`, 
+            `mail`, 
+            `password`)
+            VALUES (
+            :lastname, 
+            :firstname, 
+            :mail, 
+            :userPassword);";
+
         $sth = $db->prepare($sqlQuery);
+
         $sth->bindValue(':lastname', $this->_lastname);
         $sth->bindValue(':firstname', $this->_firstname);
         $sth->bindValue(':mail', $this->_mail);
         $sth->bindValue(':userPassword', $this->_password);
+
         return $sth->execute();
     }
 
     // ******************** Get ALL ******************** //
-
     /**
      * @return array
      */
     public static function getAll(): array
     {
         $db = connect();
-        $sql = 'SELECT * FROM `subscriptions`;';
+
+        $sql = 'SELECT * FROM `users`;';
+
         $sth = $db->query($sql);
+
         return $sth->fetchall();
     }
 
@@ -204,11 +216,61 @@ class Users
     public static function get(int $id): array
     {
         $db = connect();
-        $sql = 'SELECT * FROM `subscriptions`
-                WHERE `idSubscription` = :id ;';
+
+        $sql = 'SELECT * FROM `users`
+                WHERE `idUser` = :id ;';
+
         $sth = $db->prepare($sql);
+
         $sth->bindValue(':id', $id);
+
         return $sth->fetch();
     }
 
+
+    // ******************** Update ******************** //
+    /**
+     * @param int $id
+     * 
+     * @return bool
+     */
+    public function update(int $id): bool
+    {
+        $db = connect();
+
+        $sqlQuery = "UPDATE `users` 
+                    SET `lastName`=:lastname,
+                    `firstName`=:firstname,
+                    `mail`=:mail
+                    WHERE `idUser`= :id ;'";
+
+        $sth = $db->prepare($sqlQuery);
+
+        $sth->bindValue(':lastname', $this->_lastname);
+        $sth->bindValue(':firstname', $this->_firstname);
+        $sth->bindValue(':mail', $this->_mail);
+        $sth->bindValue(':id', $id);
+
+        return $sth->execute();
+    }
+
+    // ******************** Delete ******************** //
+    /**
+     * @param int $id
+     * 
+     * @return bool
+     */
+    public static function delete(int $id): bool
+    {
+        $db = connect();
+
+        $sqlQuery = 'DELETE FROM `users`
+        WHERE `idUser` = :id ;';
+
+        $sth = $db->prepare($sqlQuery);
+
+        $sth->bindValue(':id', $id);
+
+        return $sth->execute();
+    }
 }

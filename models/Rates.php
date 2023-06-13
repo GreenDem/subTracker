@@ -8,7 +8,7 @@ class Rates
     private int $_idRates;
     private string $_rates;
 
-    // ******************** id Logs ******************** //
+    // ******************** id Rates ******************** //
 
     /**
      * @param int $idRates
@@ -28,7 +28,7 @@ class Rates
     }
 
 
-    // ******************** id Logs ******************** //
+    // ******************** Rate ******************** //
 
     /**
      * @param string $rates
@@ -47,7 +47,7 @@ class Rates
         return $this->_rates;
     }
 
-    // ******************** id Logs ******************** //
+    // ******************** ADD ******************** //
 
     /**
      * @return bool
@@ -64,7 +64,7 @@ class Rates
         return $sth->execute();
     }
 
-    // ******************** id Logs ******************** //
+    // ******************** Get ALL ******************** //
 
     /**
      * @return array
@@ -77,7 +77,7 @@ class Rates
         return $sth->fetchall();
     }
 
-    // ******************** id Logs ******************** //
+    // ******************** Get ******************** //
 
     /**
      * @param int $id
@@ -93,4 +93,49 @@ class Rates
         $sth->bindValue(':id', $id);
         return $sth->fetch();
     }
+
+        // ******************** Update ******************** //
+    /**
+     * @param int $id
+     * 
+     * @return bool
+     */
+    public function update(int $id): bool
+    {
+        $db = connect();
+
+        // Ecriture de la requête
+        $sqlQuery = "UPDATE `rates` 
+                    SET `rates`=:rates
+                    WHERE `idRate`= :id ;'";
+
+        // Préparation sth
+        $sth = $db->prepare($sqlQuery);
+
+        $sth->bindValue(':rates', $this->_rates);
+        $sth->bindValue(':id', $id);
+
+        return $sth->execute();
+    }
+
+    // ******************** Delete ******************** //
+    /**
+     * @param int $id
+     * 
+     * @return bool
+     */
+    public static function delete(int $id): bool
+    {
+        $db = connect();
+
+        $sqlQuery = 'DELETE FROM `rates`
+        WHERE `idRate` = :id ;';
+
+        $sth = $db->prepare($sqlQuery);
+
+        $sth->bindValue(':id', $id);
+
+        return $sth->execute();
+    }
+
 }

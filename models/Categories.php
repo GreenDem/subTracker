@@ -87,4 +87,45 @@ class Categories
         $sth->bindValue(':id', $id);
         return $sth->fetch();
     }
+    // ******************** Update ******************** //
+    /**
+     * @param int $id
+     * 
+     * @return bool
+     */
+    public function update(int $id): bool
+    {
+        $db = connect();
+
+        $sqlQuery = "UPDATE `categories` 
+                    SET `category`=:category,
+                    WHERE `idCategory`= :id ;'";
+
+        $sth = $db->prepare($sqlQuery);
+
+        $sth->bindValue(':category', $this->_category);
+        $sth->bindValue(':id', $id);
+
+        return $sth->execute();
+    }
+
+    // ******************** Delete ******************** //
+    /**
+     * @param int $id
+     * 
+     * @return bool
+     */
+    public static function delete(int $id): bool
+    {
+        $db = connect();
+
+        $sqlQuery = 'DELETE FROM `categories`
+        WHERE `idCategory` = :id ;';
+
+        $sth = $db->prepare($sqlQuery);
+
+        $sth->bindValue(':idCategory', $id);
+
+        return $sth->execute();
+    }
 }

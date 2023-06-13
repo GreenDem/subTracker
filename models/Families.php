@@ -76,10 +76,10 @@ class Families
         $db = connect();
         // Ecriture de la requête
         $sqlQuery = "INSERT INTO `families` (`name`)
-        VALUES (:name);";
+        VALUES (:familyName);";
         // Préparation sth
         $sth = $db->prepare($sqlQuery);
-        $sth->bindValue(':name', $this->_name);
+        $sth->bindValue(':familyName', $this->_name);
         return $sth->execute();
     }
 
@@ -110,4 +110,49 @@ class Families
         $sth->bindValue(':id', $id);
         return $sth->fetch();
     }
+    
+                    // ******************** Update ******************** //
+    /**
+     * @param int $id
+     * 
+     * @return bool
+     */
+    public function update(int $id): bool
+    {
+        $db = connect();
+
+        $sqlQuery = "UPDATE `families` 
+                    SET `name`=:familyName,
+                    `idUser`=:idUser,
+                    WHERE `idFamily`= :id ;'";
+
+        $sth = $db->prepare($sqlQuery);
+
+        $sth->bindValue(':familyName', $this->_name);
+        $sth->bindValue(':idUser', $this->_idUser);
+        $sth->bindValue(':id', $id);
+
+        return $sth->execute();
+    }
+
+    // ******************** Delete ******************** //
+    /**
+     * @param int $id
+     * 
+     * @return bool
+     */
+    public static function delete(int $id): bool
+    {
+        $db = connect();
+
+        $sqlQuery = 'DELETE FROM `families`
+        WHERE `idFamily` = :id ;';
+
+        $sth = $db->prepare($sqlQuery);
+
+        $sth->bindValue(':idFamily', $id);
+
+        return $sth->execute();
+    }
+
 }
