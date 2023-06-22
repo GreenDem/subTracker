@@ -3,7 +3,7 @@
 </div>
 
 <?php foreach ($subscriptions as $sub) { ?>
-    # code...
+    
 
 <div class="cardContainer">
     <div class="card">
@@ -12,6 +12,7 @@
         </div>
         <div class="cardText">
         <div class="leftCardText"></div>
+        <h2><?= $sub->label?></h2>
         <div class="rightCardText"></div>
         </div>
     </div>

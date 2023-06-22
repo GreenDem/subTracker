@@ -350,4 +350,21 @@ class Subscriptions
 
         return $sth->execute();
     }
+
+
+        // ******************** Get ALL ******************** //
+
+    /**
+     * @return array|false
+     */
+    public static function getyAll(): array|false
+    {
+        $db = connect();
+        $sql = 'SELECT * FROM `categories`
+        INNER JOIN `labels` ON `categories`.`idCategory` = `labels`.`idCategory`
+        RIGHT JOIN `subscriptions` ON `labels`.`idLabel` = `subscriptions`.`idLabel`
+        LEFT JOIN `rates` ON `rates`.`idRate` = `subscriptions`.`idRate`;';
+        $sth = $db->query($sql);
+        return $sth->fetchAll();
+    }
 }
