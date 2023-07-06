@@ -1,18 +1,9 @@
 <?php
-require_once __DIR__ . '/../config/init.php';
+require_once __DIR__ . '/../models/Users.php';
 
 
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
-    $psw = $_POST['password'];
-    $psw2 = $_POST['passwordCtr'];
-
-    if ($psw != $psw2) {
-        $error['password'] = "Les mots de passent doivent etre identiques";
-    } else {
-        $psw = password_hash($psw, PASSWORD_DEFAULT);
-    }
 
     $mail =  filter_input(INPUT_POST, 'mail', FILTER_SANITIZE_EMAIL);
     if (empty($mail)) {
@@ -24,38 +15,51 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     }
 
-    $firstName = filter_input(INPUT_POST, 'firstName', FILTER_SANITIZE_SPECIAL_CHARS);
-    if (empty($firstName)) {
-        $error['firstName'] = 'Le prénom est obligatoire.';
-    } else {
-        if (!preg_match("/" . $regex['lastName'] . "/", $firstName)) {
-            $error['firstName'] = "Il y a une erreur dans votre nom";
-        }
+    $firstname = filter_input(INPUT_POST, 'firstname', FILTER_SANITIZE_SPECIAL_CHARS);
+    if (empty($firstname)) {
+        $error['firstname'] = 'Le prénom est obligatoire.';
     }
 
-    $lastName = filter_input(INPUT_POST, 'lastName', FILTER_SANITIZE_SPECIAL_CHARS);
-    if (empty($lastName)) {
-        $error['lastName'] = 'Le nom est obligatoire.';
+
+    $lastname = filter_input(INPUT_POST, 'lastname', FILTER_SANITIZE_SPECIAL_CHARS);
+    if (empty($lastname)) {
+        $error['lastname'] = 'Le nom est obligatoire.';
     } else {
-        if (!preg_match("/" . $regex['lastName'] . "/", $lastName)) {
-            $error['lastName'] = "Il y a une erreur dans votre nom";
+        // if (!preg_match("/" . $regex['lastname'] . "/", $lastname)) {
+        //     $error['lastname'] = "Il y a une erreur dans votre nom";
+        // }
+    }
+
+    $password = $_POST['password'];
+    $password2 = $_POST['passwordCtr'];
+
+    if ($password === $password2) {
+        $password = password_hash($password, PASSWORD_DEFAULT);
+    } else {
+        $error['password'] = "Les mots de passes ne corresondent pas.";
+    }
+
+    var_dump($error);
+    if (empty($error)) {
+
+        $user = new Users;
+        $user->setLastname($lastname);
+        $user->setFirstname($firstname);
+        $user->setMail($mail);
+        $user->setPassword($password);
+
+        var_dump($user);
+        $isOk = $user->add();
+
+        if ($isOk) {
+            SessionFlash::setMessage('Votre compte a bien était crée.');
+            header('location: /../index.php?action=signIn');
+            die;
         }
     }
 }
 
+
 include __DIR__ . '/../views/templates/header.php';
-    include __DIR__ . '/../views/users/form-SignUP.php';
+include __DIR__ . '/../views/users/form-SignUP.php';
 include __DIR__ . '/../views/templates/footer.php';
-
-
-
-
-
-
-
-
-
-
-
-
-

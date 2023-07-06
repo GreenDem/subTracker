@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__ . '/../models/Users.php';
 
+
 $id=4;
 $users = new Users;
 $users->setLastname('Nathan');

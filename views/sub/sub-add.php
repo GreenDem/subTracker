@@ -1,4 +1,3 @@
-<?php require_once __DIR__ . '/../../config/init.php' ?>
 
 <div class="sub-add-container">
     <form method="post">

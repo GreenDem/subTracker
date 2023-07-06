@@ -250,7 +250,9 @@ class Users
         $sth->bindValue(':mail', $this->_mail);
         $sth->bindValue(':id', $id, PDO::PARAM_INT);
 
-        return $sth->execute();
+        if ($sth->execute()) {
+            return ($sth->rowCount() > 0) ? true : false;
+        }
     }
 
     // ******************** Delete ******************** //
@@ -270,6 +272,35 @@ class Users
 
         $sth->bindValue(':id', $id, PDO::PARAM_INT);
 
-        return $sth->execute();
+        if ($sth->execute()) {
+            return ($sth->rowCount() > 0) ? true : false;
+        }
+    }
+
+    public static function isMailExists(string $mail): bool|object
+    {
+        $db = connect();
+        $sql = 'SELECT * FROM `users` WHERE `mail` = :mail';
+
+        $sth = $db->prepare($sql);
+        $sth->bindValue(':mail', $mail, PDO::PARAM_STR);
+        $sth->execute();
+
+        return $sth->fetch();
+    }
+
+
+    public static function checkUser()
+    {
+        if (!empty($_COOKIE['user'])) {
+            $cookie = $_COOKIE['user'];
+            if (JWT::get($cookie)) {
+                $_SESSION['user'] = $cookie;
+            }
+        }
+        if (empty($_SESSION['user'])) {
+            header('location: /../index.php?action=signIn');
+            die;
+        }
     }
 }

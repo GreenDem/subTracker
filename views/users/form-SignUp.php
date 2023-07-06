@@ -27,7 +27,7 @@
                         <br>
 
                         <label for="firstname" class="form-label">Prénom</label>
-                        <input type="text" class="" id="firstname" name="lastname" pattern=<?= $regex['lastName'] ?> required>
+                        <input type="text" class="" id="firstname" name="firstname" required>
                         <p class="red"><?= $error['firstname'] ?? '' ?></p>
                         
 

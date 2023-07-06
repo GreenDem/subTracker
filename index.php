@@ -1,6 +1,8 @@
 <?php
 
 // try {
+    require_once __DIR__ . '/config/init.php';
+    require_once __DIR__ . '/models/Users.php';
     $action = $_GET['action'] ?? '/';
 
     $ctrl = match ($action) {
