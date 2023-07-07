@@ -1,13 +1,14 @@
 <?php
 require_once __DIR__ . '/../models/Subscriptions.php';
-require_once __DIR__ . '/../models/Users.php';
 
 Users::checkUser();
 
+
+
 $user= $_SESSION['user'];
+var_dump($user);
 
-
-$subscriptions = Subscriptions::getAll(14);
+$subscriptions = Subscriptions::getAll($user->idUser);
 
 
 include __DIR__ . '/../views/templates/header.php';

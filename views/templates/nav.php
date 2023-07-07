@@ -15,8 +15,6 @@
             <a href="/index.php?action=subHome" aria-current="page">Sub Home</a>
             <a href="/index.php?action=add">Ajouter</a>
             <a href="/index.php?action=dash">DashBoard</a>
-            <a href="#">Bob</a>
-            <a href="#">Bob</a>
         </div>
     </div>
 
@@ -25,8 +23,12 @@
             <img src="/public/assets/img/user.svg" alt="user icon" />
         </a>
         <div class="sign-btns">
+        <?php if (empty($_SESSION['user'])){?>
             <button type="button" onclick="location.href='index.php?action=signIn'">Sign In</button>
             <button type="button" onclick="location.href='index.php?action=signUp'">Sign Up</button>
+            <?php } else {?>
+                <button type="button" onclick="location.href='index.php?action=logOut'">Deconexion</button>
+                <?php } ?>
         </div>
     </div>
 

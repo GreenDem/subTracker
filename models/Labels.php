@@ -6,8 +6,8 @@ class Labels
 {
     private int $_idLabel;
     private string $_label;
-    private string $_url;
-    private string $_logo;
+    private ?string $_url;
+    private ?string $_logo;
     private int $_idCategory;
 
 
@@ -118,17 +118,21 @@ class Labels
      */
     public function add(): bool
     {
-        $db = connect();
+        $db = Database::getInstance();
         // Ecriture de la requête
         $sqlQuery = "INSERT INTO `labels` (`label`,`url`,`logo`,`idCategory`)
         VALUES (:label, :labelUrl, :logo, :idCategory);";
         // Préparation sth
         $sth = $db->prepare($sqlQuery);
         $sth->bindValue(':label', $this->_label);
-        $sth->bindValue(':labelUrl', $this->_url);
-        $sth->bindValue(':logo', $this->_logo);
+        $sth->bindValue(':labelUrl', $this->_url ?? null);
+        $sth->bindValue(':logo', $this->_logo ?? null);
         $sth->bindValue(':idCategory', $this->_idCategory, PDO::PARAM_INT);
-        return $sth->execute();
+
+
+        if ($sth->execute()) {
+            return ($sth->rowCount() > 0) ? true : false;
+        }
     }
 
     // ******************** Get ALL ******************** //
@@ -167,7 +171,7 @@ class Labels
         return $sth->fetch();
     }
 
-                // ******************** Update ******************** //
+    // ******************** Update ******************** //
     /**
      * @param int $id
      * 
@@ -215,5 +219,4 @@ class Labels
 
         return $sth->execute();
     }
-
 }

@@ -1,7 +1,6 @@
 <?php
-require_once __DIR__ . '/../models/Users.php';
-
-
+Users::checkUser();
+Users::checkAdmin();
 $id=4;
 $users = new Users;
 $users->setLastname('Nathan');

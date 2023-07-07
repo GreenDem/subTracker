@@ -40,7 +40,7 @@ class JWT{
     }
 
 
-    public static function set(int $id, string $mail ){
+    public static function set(int $id, string $mail, string $admin){
 
         // header encode
         $header = json_encode(['typ' => 'JWT', 'alg' => 'HS256']);
@@ -51,7 +51,8 @@ class JWT{
         //payload encode
         $payload = json_encode([
             'mail' => $mail,
-            'id' => $id
+            'idUser' => $id,
+            'admin' => $admin
         ]);
 
         $base64Urlpayload = str_replace(['+', '/', '='], ['-', '_', ''], base64_encode($payload));

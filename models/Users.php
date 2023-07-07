@@ -294,12 +294,21 @@ class Users
     {
         if (!empty($_COOKIE['user'])) {
             $cookie = $_COOKIE['user'];
-            if (JWT::get($cookie)) {
-                $_SESSION['user'] = $cookie;
+            $cookieDecode = JWT::get($cookie);
+            if ($cookieDecode) {
+                $_SESSION['user'] = $cookieDecode;
             }
         }
         if (empty($_SESSION['user'])) {
             header('location: /../index.php?action=signIn');
+            die;
+        }
+    }
+
+    public static function checkAdmin()
+    {
+        if ($_SESSION['user']->admin != 1){
+            header('location: /../index.php');
             die;
         }
     }

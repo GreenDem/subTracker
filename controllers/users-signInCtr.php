@@ -1,5 +1,4 @@
 <?php
-require_once __DIR__ . '/../models/Users.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -28,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (empty($error)) {
         $_SESSION['user'] = $user;
         if ($cookie == 1){
-            $JWT = JWT::set($user->idUser, $user->mail);
+            $JWT = JWT::set($user->idUser, $user->mail, $user->admin);
             setcookie('user', $JWT, time() + (86400 * 30), '/');
         }
         header('location: /../index.php?action=subHome');

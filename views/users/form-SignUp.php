@@ -22,7 +22,7 @@
                         <br>
 
                         <label for="lastname" class="form-label">Nom</label>
-                        <input type="text" class="" id="lastname" name="lastname" pattern=<?= $regex['lastName'] ?> required>
+                        <input type="text" class="" id="lastname" name="lastname" pattern=<?= LASTNAME ?> required>
                         <p class="red"><?= $error['lastname'] ?? '' ?></p>
                         <br>
 

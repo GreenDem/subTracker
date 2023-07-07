@@ -12,7 +12,7 @@
         'subHome' => '/controllers/sub-homeCtr.php',
         'add' => '/controllers/sub-addCtr.php',
         'dash' => '/controllers/dashboardCtr.php',
-        'detailRdv' => '/controllers/detail-aptmCtr.php',
+        'logOut' => '/controllers/logOutCtr.php',
         'both' => '/controllers/add-bothCtr.php',
         
         default => '/controllers/404Ctrl.php'

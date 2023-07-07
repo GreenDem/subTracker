@@ -6,16 +6,16 @@ require_once __DIR__ . '/../helpers/connect.php';
 class Subscriptions
 {
     private int $_idSubscription;
-    private string $_date_start;
-    private string $_date_end;
+    // private ?string $_date_start;
+    // private ?string $_date_end;
     private string $_date_payment;
     private int $_price;
     private string $_created_at;
     private string $_updated_at;
-    private int $_idFamily;
+    private ?int $_idFamily;
     private int $_idLabel;
     private int $_idRate;
-    private int $_idUser;
+    private ?int $_idUser;
 
 
     // ******************** Id Subscription ******************** //
@@ -36,41 +36,41 @@ class Subscriptions
         return $this->_idSubscription;
     }
 
-    // ******************** Date Start ******************** //
-    /**
-     * @param string $dateStart
-     * 
-     * @return void
-     */
-    public function setDate_start(string $dateStart): void
-    {
-        $this->_date_start = $dateStart;
-    }
-    /**
-     * @return string
-     */
-    public function getDate_start(): string
-    {
-        return $this->_date_start;
-    }
+    // // ******************** Date Start ******************** //
+    // /**
+    //  * @param string $dateStart
+    //  * 
+    //  * @return void
+    //  */
+    // public function setDate_start(?string $dateStart): void
+    // {
+    //     $this->_date_start = $dateStart;
+    // }
+    // /**
+    //  * @return string
+    //  */
+    // public function getDate_start(): string
+    // {
+    //     return $this->_date_start;
+    // }
 
-    // ******************** Date End ******************** //
-    /**
-     * @param string $dateEnd
-     * 
-     * @return void
-     */
-    public function setDate_end(string $dateEnd): void
-    {
-        $this->_date_end = $dateEnd;
-    }
-    /**
-     * @return string
-     */
-    public function getDate_end(): string
-    {
-        return $this->_date_end;
-    }
+    // // ******************** Date End ******************** //
+    // /**
+    //  * @param string $dateEnd
+    //  * 
+    //  * @return void
+    //  */
+    // public function setDate_end(?string $dateEnd): void
+    // {
+    //     $this->_date_end = $dateEnd;
+    // }
+    // /**
+    //  * @return string
+    //  */
+    // public function getDate_end(): string
+    // {
+    //     return $this->_date_end;
+    // }
 
     // ******************** Date Payment ******************** //
     /**
@@ -96,14 +96,14 @@ class Subscriptions
      * 
      * @return void
      */
-    public function setprice(float $price): void
+    public function setPrice(float $price): void
     {
         $this->_price = $price;
     }
     /**
      * @return float
      */
-    public function getprice(): float
+    public function getPrice(): float
     {
         return $this->_price;
     }
@@ -223,19 +223,16 @@ class Subscriptions
      */
     public function add(): bool
     {
-        $db = connect();
+        $db = Database::getInstance();
 
-        $sqlQuery = "INSERT INTO `subscriptions` (
-            `date_start`,
-            `date_end`, 
+        $sqlQuery = "INSERT INTO `subscriptions` ( 
             `date_payment`, 
             `price`, 
             `idFamily`,
             `idLabel`, 
             `idRate`, 
             `idUser` )
-            VALUES (:date_start,
-            :date_end, 
+            VALUES (
             :date_payment, 
             :price,
             :idFamily,
@@ -246,16 +243,18 @@ class Subscriptions
 
         $sth = $db->prepare($sqlQuery);
 
-        $sth->bindValue(':date_start', $this->_date_start);
-        $sth->bindValue(':date_end', $this->_date_end);
+        // $sth->bindValue(':date_start', $this->_date_start);
+        // $sth->bindValue(':date_end', $this->_date_end);
         $sth->bindValue(':date_payment', $this->_date_payment);
         $sth->bindValue(':price', $this->_price);
-        $sth->bindValue(':idFamily', $this->_idFamily, PDO::PARAM_INT);
+        $sth->bindValue(':idFamily', $this->_idFamily ?? null, PDO::PARAM_INT);
         $sth->bindValue(':idLabel', $this->_idLabel, PDO::PARAM_INT);
         $sth->bindValue(':idRate', $this->_idRate, PDO::PARAM_INT);
         $sth->bindValue(':idUser', $this->_idUser, PDO::PARAM_INT);
 
-        return $sth->execute();
+        if ($sth->execute()) {
+            return ($sth->rowCount() > 0) ? true : false;
+        }
     }
 
     // ******************** Get ALL ******************** //
@@ -324,9 +323,9 @@ class Subscriptions
         $sth->bindValue(':price', $this->_price);
         $sth->bindValue(':idFamily', $this->_idFamily, PDO::PARAM_INT);
         $sth->bindValue(':idLabel', $this->_idLabel, PDO::PARAM_INT);
-        $sth->bindValue(':idRate', $this->_idRate,PDO::PARAM_INT);
-        $sth->bindValue(':idUser', $this->_idUser,PDO::PARAM_INT);
-        $sth->bindValue(':id', $id,PDO::PARAM_INT);
+        $sth->bindValue(':idRate', $this->_idRate, PDO::PARAM_INT);
+        $sth->bindValue(':idUser', $this->_idUser, PDO::PARAM_INT);
+        $sth->bindValue(':id', $id, PDO::PARAM_INT);
 
         return $sth->execute();
     }
@@ -346,13 +345,13 @@ class Subscriptions
 
         $sth = $db->prepare($sqlQuery);
 
-        $sth->bindValue(':id', $id,PDO::PARAM_INT);
+        $sth->bindValue(':id', $id, PDO::PARAM_INT);
 
         return $sth->execute();
     }
 
 
-        // ******************** Get ALL ******************** //
+    // ******************** Get ALL ******************** //
 
 
     /**
@@ -371,7 +370,7 @@ class Subscriptions
         WHERE `users`.`idUser` = :id;';
         $sth = $db->prepare($sql);
 
-        $sth->bindValue( ':id' , $id, PDO::PARAM_INT);
+        $sth->bindValue(':id', $id, PDO::PARAM_INT);
 
         $sth->execute();
         return $sth->fetchAll();
