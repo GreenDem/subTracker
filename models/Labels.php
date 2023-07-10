@@ -6,6 +6,7 @@ class Labels
 {
     private int $_idLabel;
     private string $_label;
+    private ?int $_visibility = null;
     private ?string $_url;
     private ?string $_logo;
     private int $_idCategory;
@@ -50,6 +51,24 @@ class Labels
         return $this->_label;
     }
 
+    // ******************** Visibility ******************** //
+
+    /**
+     * @param int $visibility
+     * 
+     * @return void
+     */
+    public function setVisibility(int $visibility): void
+    {
+        $this->_visibility = $visibility;
+    }
+    /**
+     * @return int
+     */
+    public function getVisibility(): int
+    {
+        return $this->_visibility;
+    }
 
     // ******************** Url ******************** //
 
@@ -120,14 +139,15 @@ class Labels
     {
         $db = Database::getInstance();
         // Ecriture de la requête
-        $sqlQuery = "INSERT INTO `labels` (`label`,`url`,`logo`,`idCategory`)
-        VALUES (:label, :labelUrl, :logo, :idCategory);";
+        $sqlQuery = "INSERT INTO `labels` (`label`,`url`,`logo`,`idCategory`, visibility)
+        VALUES (:label, :labelUrl, :logo, :idCategory, :visibility);";
         // Préparation sth
         $sth = $db->prepare($sqlQuery);
         $sth->bindValue(':label', $this->_label);
         $sth->bindValue(':labelUrl', $this->_url ?? null);
         $sth->bindValue(':logo', $this->_logo ?? null);
         $sth->bindValue(':idCategory', $this->_idCategory, PDO::PARAM_INT);
+        $sth->bindValue(':visibility', $this->_visibility, PDO::PARAM_INT);
 
 
         if ($sth->execute()) {
@@ -184,8 +204,9 @@ class Labels
         $sqlQuery = "UPDATE `logs` 
                     SET `label`=:label,
                     `labelUrl`=:labelUrl,
-                    `logo`=:logo
-                    `idCategory`=:idCategory
+                    `logo`=:logo,
+                    `idCategory`=:idCategory,
+                    `visibility`=:visibility
                     WHERE `idLog`= :id ;'";
 
         $sth = $db->prepare($sqlQuery);
@@ -194,6 +215,7 @@ class Labels
         $sth->bindValue(':labelUrl', $this->_url);
         $sth->bindValue(':logo', $this->_logo);
         $sth->bindValue(':idCategory', $this->_idCategory, PDO::PARAM_INT);
+        $sth->bindValue(':visibility', $this->_visibility, PDO::PARAM_INT);
 
         $sth->bindValue(':id', $id, PDO::PARAM_INT);
 

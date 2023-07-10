@@ -14,6 +14,8 @@
         'dash' => '/controllers/dashboardCtr.php',
         'logOut' => '/controllers/logOutCtr.php',
         'both' => '/controllers/add-bothCtr.php',
+        'aUpdated' => '/controllers/admin-updatedCtr.php',
+        'aDeleted' => '/controllers/admin-deletedCtr.php',
         
         default => '/controllers/404Ctrl.php'
     };

@@ -7,7 +7,6 @@ $categories= Categories::getAll();
 $rates = Rates::getAll();
 // que du back et redirection 
 $cat =[];
-var_dump($_SESSION['user']);
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $cat = array_column($categories, 'idCategory');
@@ -132,16 +131,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $db->rollBack(); // Annulation de toutes les requêtes exécutées avant la levée de l'exception
             SessionFlash::setMessage('Un problème est survenu lors de l\'ajout du patient et de son rdv. Aucun ajout n\'a été effectué');
         }
-
-        var_dump($subscriptions);
-        var_dump($labels);
-        var_dump($categories);
-        var_dump($rates);
-
-
-
-
-
 
     }
 }

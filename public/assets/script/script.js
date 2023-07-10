@@ -8,16 +8,18 @@ images.forEach(image => {
         image.style.scale = '1'
     })
 }
-
 )
 
-console.log(images)
+let deleteModal = document.querySelectorAll('.deleteModal')
+let deleteModalInfo = document.querySelector('dataDelete')
+let deleteModalName = document.getElementById('modalName')
+let deleteModalhref = document.getElementById('href')
 
-switch (key) {
-    case value:
-        
-        break;
 
-    default:
-        break;
-}
+deleteModal.forEach(trash => {
+    trash.addEventListener('click', (e) =>{
+        let bob =JSON.parse(e.target.parentElement.dataset.user)
+        deleteModalName.innerText = bob.lastname + ' '+ bob.firstname
+        deleteModalhref.href = '/../index.php?action=aDeleted&id=' + bob.idUser
+    })
+})

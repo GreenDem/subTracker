@@ -10,6 +10,7 @@ class Users
     private string $_firstname;
     private string $_mail;
     private string $_password;
+    private ?int $_admin;
     private string $_created_at;
     private string $_updated_at;
     private string $_validated_at;
@@ -106,6 +107,26 @@ class Users
         return $this->_password;
     }
 
+
+    // ******************** Password ******************** //
+
+    /**
+     * @param string $password
+     * 
+     * @return void
+     */
+    public function setAdmin(?int $admin): void
+    {
+        $this->_admin = $admin;
+    }
+    /**
+     * @return string
+     */
+    public function getAdmin(): string
+    {
+        return $this->_admin;
+    }
+
     // ******************** Created AT ******************** //
     /**
      * @param string $created_at
@@ -197,7 +218,7 @@ class Users
     {
         $db = connect();
 
-        $sql = 'SELECT * FROM `users`;';
+        $sql = 'SELECT `idUser`, `lastname`, `firstname`, `admin`, `updated_at`, `mail` FROM `users`;';
 
         $sth = $db->query($sql);
 
@@ -310,6 +331,28 @@ class Users
         if ($_SESSION['user']->admin != 1){
             header('location: /../index.php');
             die;
+        }
+    }
+
+    public function updateAdmin(int $id): bool
+    {
+        $db = connect();
+
+        $sqlQuery = "UPDATE `users` 
+                    SET `lastName`=:lastname,
+                    `firstName`=:firstname,
+                    `admin`=:admin
+                    WHERE `idUser`= :id ;'";
+
+        $sth = $db->prepare($sqlQuery);
+
+        $sth->bindValue(':lastname', $this->_lastname);
+        $sth->bindValue(':firstname', $this->_firstname);
+        $sth->bindValue(':admin', $this->_admin, PDO::PARAM_INT);
+        $sth->bindValue(':id', $id, PDO::PARAM_INT);
+
+        if ($sth->execute()) {
+            return ($sth->rowCount() > 0) ? true : false;
         }
     }
 }

@@ -264,7 +264,7 @@ class Subscriptions
      */
     public static function getyAll(): array|false
     {
-        $db = connect();
+        $db = Database::getInstance();
         $sql = 'SELECT * FROM `subscriptions`;';
         $sth = $db->query($sql);
         return $sth->fetchall();
@@ -278,7 +278,7 @@ class Subscriptions
      */
     public static function get(int $id): object|false
     {
-        $db = connect();
+        $db = Database::getInstance();
 
         $sql = 'SELECT * FROM `subscriptions`
                 WHERE `idSubscription` = :id ;';
@@ -300,12 +300,11 @@ class Subscriptions
      */
     public function update(int $id): bool
     {
-        $db = connect();
+        $db = Database::getInstance();
 
         // Ecriture de la requête
         $sqlQuery = "UPDATE `users` 
-                    SET `date_start`=:date_start,
-                    `date_end`=:date_end,
+                    SET 
                     `date_payment`=:date_payment,
                     `price`=:price,
                     `idFamily`=:idFamily,
@@ -317,8 +316,6 @@ class Subscriptions
         // Préparation sth
         $sth = $db->prepare($sqlQuery);
 
-        $sth->bindValue(':date_start', $this->_date_start);
-        $sth->bindValue(':date_end', $this->_date_end);
         $sth->bindValue(':date_payment', $this->_date_payment);
         $sth->bindValue(':price', $this->_price);
         $sth->bindValue(':idFamily', $this->_idFamily, PDO::PARAM_INT);
@@ -338,7 +335,7 @@ class Subscriptions
      */
     public static function delete(int $id): bool
     {
-        $db = connect();
+        $db = Database::getInstance();
 
         $sqlQuery = 'DELETE FROM `subscriptions`
         WHERE `idSubscription` = :id ;';
@@ -361,7 +358,7 @@ class Subscriptions
      */
     public static function getAll(int $id): array|false
     {
-        $db = connect();
+        $db = Database::getInstance();
         $sql = 'SELECT * FROM `categories`
         INNER JOIN `labels` ON `categories`.`idCategory` = `labels`.`idCategory`
         RIGHT JOIN `subscriptions` ON `labels`.`idLabel` = `subscriptions`.`idLabel`

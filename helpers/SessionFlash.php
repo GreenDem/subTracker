@@ -23,6 +23,7 @@ class SessionFlash
             $SessionFlash = $_SESSION["SessionFlash"];
             self::deleteMessage();
             return $SessionFlash;
+        } else {
         }
     }
 

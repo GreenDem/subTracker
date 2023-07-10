@@ -12,9 +12,12 @@
             <span></span>
         </button>
         <div class="navlinks-container">
+            <?php if (!empty($_SESSION['user'])) { ?>
             <a href="/index.php?action=subHome" aria-current="page">Sub Home</a>
             <a href="/index.php?action=add">Ajouter</a>
-            <a href="/index.php?action=dash">DashBoard</a>
+            <?php if ($_SESSION['user']->admin = 1) { ?>
+                <a href="/index.php?action=dash">DashBoard</a>
+                <?php }} ?>
         </div>
     </div>
 

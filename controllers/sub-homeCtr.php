@@ -6,7 +6,6 @@ Users::checkUser();
 
 
 $user= $_SESSION['user'];
-var_dump($user);
 
 $subscriptions = Subscriptions::getAll($user->idUser);
 
