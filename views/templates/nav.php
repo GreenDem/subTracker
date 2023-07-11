@@ -16,7 +16,9 @@
             <a href="/index.php?action=subHome" aria-current="page">Sub Home</a>
             <a href="/index.php?action=add">Ajouter</a>
             <?php if ($_SESSION['user']->admin = 1) { ?>
-                <a href="/index.php?action=dash">DashBoard</a>
+                <a href="/index.php?action=dash">DashBoard - Users</a>
+                <a href="/index.php?action=dashcat">DashBoard - Category</a>
+                <a href="/index.php?action=dashrat">DashBoard - Rates</a>
                 <?php }} ?>
         </div>
     </div>

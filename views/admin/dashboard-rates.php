@@ -1,4 +1,4 @@
-<H1>DASHBOARD</H1>
+<H1>DASHBOARD SUBS</H1>
 <div class="container-fluid">
     <?php if (SessionFlash::checkMessage()) { ?>
         <div class="alert alert-success" role="alert">
@@ -13,11 +13,7 @@
         <thead>
             <tr>
                 <th scope="col">ID</th>
-                <th scope="col">Nom</th>
-                <th scope="col">Prénom</th>
-                <th scope="col">mail</th>
-                <th scope="col">Admin</th>
-                <th scope="col">Updated_at</th>
+                <th scope="col">Rates</th>
                 <th scope="col">Modifier</th>
                 <th scope="col">Supprimer</th>
             </tr>
@@ -26,18 +22,14 @@
 
             <?php
 
-            foreach ($users as $user) {
-                $deleteFocus = json_encode($user)
+            foreach ($rates as $rate) {
+                $deleteFocus = json_encode($rate)
             ?>
                 <tr>
-                    <th scope="row"><?= $user->idUser ?></th>
-                    <td><?= $user->lastname ?></td>
-                    <td><?= $user->firstname ?></td>
-                    <td><?= $user->mail ?></td>
-                    <td><?= $user->admin ?></td>
-                    <td><?= $user->updated_at ?></td>
-                    <td><a href="/../index.php?action=aUpdated&id=<?= $user->idUser ?>"> <i class="fa-regular fa-pen-to-square"></i></a></td>
-                    <td><a class="deleteModal" data-user='<?= $deleteFocus ?>' data-bs-toggle="modal" data-bs-target="#Modal" href="/../index.php?action=aDeleted&id=<?= $user->idUser ?>"><i class="fa-regular fa-trash-can"></i></a></td>
+                    <th scope="row"><?= $rate->idRate ?></th>
+                    <td><?= $rate->rates ?></td>
+                    <td><a href="/../index.php?action=aUpdated&id=<?= $rate->idRate ?>"> <i class="fa-regular fa-pen-to-square"></i></a></td>
+                    <td><a class="deleteModal" data-rate='<?= $deleteFocus ?>' data-bs-toggle="modal" data-bs-target="#Modal" href="/../index.php?action=aDeleted&id=<?= $rate->idRate ?>"><i class="fa-regular fa-trash-can"></i></a></td>
                 </tr>
 
             <?php } ?>

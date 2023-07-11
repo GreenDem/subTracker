@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/../models/Categories.php';
 Users::checkUser();
 Users::checkAdmin();
 
@@ -8,17 +9,9 @@ $bootCSS = '<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bo
 $bootJS = '<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 ';
 
-// $id=4;
-// $users = new Users;
-// $users->setLastname('Nathan');
-// $users->setFirstname('demory');
-// $users->setMail('nathan.demory@gmail.com');
-// $users->setPassword('mwarf');
-// $test = $users->delete(31);
-// var_dump($test);
-$users = Users::getAll();
 
+$categories = Categories::getAll();
 
 include __DIR__ . '/../views/templates/header.php';
-    include __DIR__ . '/../views/admin/dashboard.php';
+    include __DIR__ . '/../views/admin/dashboard-category.php';
 include __DIR__ . '/../views/templates/footer.php';

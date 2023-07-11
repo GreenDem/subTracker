@@ -7,8 +7,8 @@ class Labels
     private int $_idLabel;
     private string $_label;
     private ?int $_visibility = null;
-    private ?string $_url;
-    private ?string $_logo;
+    private ?string $_url = null;
+    private ?string $_logo = null;
     private int $_idCategory;
 
 

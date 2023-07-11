@@ -11,9 +11,10 @@
         'signUp' => '/controllers/users-signUpCtr.php',
         'subHome' => '/controllers/sub-homeCtr.php',
         'add' => '/controllers/sub-addCtr.php',
-        'dash' => '/controllers/dashboardCtr.php',
+        'dash' => '/controllers/dashboard-userCtr.php',
+        'dashcat' => '/controllers/dashboard-categoryCtr.php',
+        'dashrat' => '/controllers/dashboard-ratesCtr.php',
         'logOut' => '/controllers/logOutCtr.php',
-        'both' => '/controllers/add-bothCtr.php',
         'aUpdated' => '/controllers/admin-updatedCtr.php',
         'aDeleted' => '/controllers/admin-deletedCtr.php',
         

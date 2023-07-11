@@ -12,10 +12,10 @@ class Subscriptions
     private int $_price;
     private string $_created_at;
     private string $_updated_at;
-    private ?int $_idFamily;
+    private ?int $_idFamily = null;
     private int $_idLabel;
     private int $_idRate;
-    private ?int $_idUser;
+    private ?int $_idUser = null;
 
 
     // ******************** Id Subscription ******************** //
@@ -356,7 +356,7 @@ class Subscriptions
      * 
      * @return array
      */
-    public static function getAll(int $id): array|false
+    public static function getAll(int $id = null, $visibility = null): array|false
     {
         $db = Database::getInstance();
         $sql = 'SELECT * FROM `categories`
@@ -364,10 +364,23 @@ class Subscriptions
         RIGHT JOIN `subscriptions` ON `labels`.`idLabel` = `subscriptions`.`idLabel`
         LEFT JOIN `rates` ON `rates`.`idRate` = `subscriptions`.`idRate`
         INNER JOIN `users` ON `subscriptions`.`idUser` = `users`.`idUser`
-        WHERE `users`.`idUser` = :id;';
+        WHERE 1 = 1 ';
+
+        // if ($id != null) {
+            $sql .= 'AND `users`.`idUser` = :id;';
+        // }
+
+        if ($visibility != null) {
+            $sql .= 'AND `labels`.`visibility` = 1';
+        }
+
+        $sql .= ';';
+
         $sth = $db->prepare($sql);
 
-        $sth->bindValue(':id', $id, PDO::PARAM_INT);
+        // if ($id != null) {
+            $sth->bindValue(':id', $id, PDO::PARAM_INT);
+        // }
 
         $sth->execute();
         return $sth->fetchAll();
