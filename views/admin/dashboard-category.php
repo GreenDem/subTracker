@@ -1,11 +1,11 @@
-<H1>DASHBOARD SUBS</H1>
+<H1>DASHBOARD Categories</H1>
 <div class="container-fluid">
     <?php if (SessionFlash::checkMessage()) { ?>
         <div class="alert alert-success" role="alert">
             <?= SessionFlash::getMessage() ?>
         </div>
     <?php } ?>
-
+        <div class="row">
     <table class="table table-striped col-6">
 
 
@@ -23,19 +23,20 @@
             <?php
 
             foreach ($categories as $category) {
-                $deleteFocus = json_encode($category)
+                $deleteFocus = json_encode($category);
             ?>
                 <tr>
                     <th scope="row"><?= $category->idCategory ?></th>
                     <td><?= $category->category ?></td>
-                    <td><a href="/../index.php?action=aUpdated&id=<?= $category->idCategory ?>"> <i class="fa-regular fa-pen-to-square"></i></a></td>
-                    <td><a class="deleteModal" data-category='<?= $deleteFocus ?>' data-bs-toggle="modal" data-bs-target="#Modal" href="/../index.php?action=aDeleted&id=<?= $category->idCategory ?>"><i class="fa-regular fa-trash-can"></i></a></td>
+                    <td><a href="/../index.php?action=catUpdated&id=<?= $category->idCategory ?>"> <i class="fa-regular fa-pen-to-square"></i></a></td>
+                    <td><a class="deleteModal1" data-category='<?= $deleteFocus ?>' data-bs-toggle="modal" data-bs-target="#Modal" href="/../index.php?action=catDeleted&id=<?= $category->idCategory ?>"><i class="fa-regular fa-trash-can"></i></a></td>
                 </tr>
 
             <?php } ?>
         </tbody>
     </table>
-
+    <a class="btn btn-secondary col-2" href="/index.php?action=catADD">AJOUTER</a>
+    </div>
 </div>
 
 <!-- Modal -->

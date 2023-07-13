@@ -28,13 +28,14 @@
                 <tr>
                     <th scope="row"><?= $rate->idRate ?></th>
                     <td><?= $rate->rates ?></td>
-                    <td><a href="/../index.php?action=aUpdated&id=<?= $rate->idRate ?>"> <i class="fa-regular fa-pen-to-square"></i></a></td>
-                    <td><a class="deleteModal" data-rate='<?= $deleteFocus ?>' data-bs-toggle="modal" data-bs-target="#Modal" href="/../index.php?action=aDeleted&id=<?= $rate->idRate ?>"><i class="fa-regular fa-trash-can"></i></a></td>
+                    <td><a href="/../index.php?action=rateUpdated&id=<?= $rate->idRate ?>"> <i class="fa-regular fa-pen-to-square"></i></a></td>
+                    <td><a class="deleteModal2" data-rate='<?= $deleteFocus ?>' data-bs-toggle="modal" data-bs-target="#Modal" href="/../index.php?action=rateDeleted&id=<?= $rate->idRate ?>"><i class="fa-regular fa-trash-can"></i></a></td>
                 </tr>
 
             <?php } ?>
         </tbody>
     </table>
+    <a class="btn btn-secondary col-2" href="/index.php?action=rateADD">AJOUTER</a>
 
 </div>
 

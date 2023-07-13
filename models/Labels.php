@@ -175,12 +175,12 @@ class Labels
      * 
      * @return array
      */
-    public static function get(int $id): array
+    public static function get(int $id): mixed
     {
         $db = connect();
 
         $sql = 'SELECT * FROM `labels`
-                WHERE `idLables` = :id ;';
+                WHERE `idLabel` = :id ;';
 
         $sth = $db->prepare($sql);
 
@@ -201,21 +201,20 @@ class Labels
     {
         $db = connect();
 
-        $sqlQuery = "UPDATE `logs` 
-                    SET `label`=:label,
-                    `labelUrl`=:labelUrl,
-                    `logo`=:logo,
-                    `idCategory`=:idCategory,
-                    `visibility`=:visibility
-                    WHERE `idLog`= :id ;'";
+        $sqlQuery = "UPDATE `labels` 
+                    SET `label`= :label,
+                    -- `labelUrl`=:labelUrl,
+                    -- `logo`=:logo,
+                    `idCategory`= :idCategory
+                    WHERE `labels`.`idLabel` = :id ;";
 
         $sth = $db->prepare($sqlQuery);
 
         $sth->bindValue(':label', $this->_label);
-        $sth->bindValue(':labelUrl', $this->_url);
-        $sth->bindValue(':logo', $this->_logo);
+        // $sth->bindValue(':labelUrl', $this->_url);
+        // $sth->bindValue(':logo', $this->_logo);
         $sth->bindValue(':idCategory', $this->_idCategory, PDO::PARAM_INT);
-        $sth->bindValue(':visibility', $this->_visibility, PDO::PARAM_INT);
+        // $sth->bindValue(':visibility', $this->_visibility, PDO::PARAM_INT);
 
         $sth->bindValue(':id', $id, PDO::PARAM_INT);
 

@@ -10,6 +10,8 @@ main{
     display: flex;
     align-items: center;
     color: #FFFF;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .cardContainer{
@@ -48,11 +50,33 @@ main{
     height: 100%;
     width: 50%;
     background-color: brown;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
 }
 .leftCardText{
     height: 100%;
     width: 50%;
     background-color: yellowgreen;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.links {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 25%;
+    width: 100%;
+}
+
+.links a{
+    text-decoration: none;
+    color: black;
+
 }
 
 /* // Large devices (desktops, 992px and up) */

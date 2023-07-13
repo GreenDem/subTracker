@@ -5,8 +5,9 @@
             <?= SessionFlash::getMessage() ?>
         </div>
     <?php } ?>
+    <div class="table-responsive">
 
-    <table class="table table-striped col-6">
+    <table class=" table table-striped">
 
 
 
@@ -43,7 +44,7 @@
             <?php } ?>
         </tbody>
     </table>
-
+    </div>
 </div>
 
 <!-- Modal -->

@@ -17,6 +17,15 @@
         'logOut' => '/controllers/logOutCtr.php',
         'aUpdated' => '/controllers/admin-updatedCtr.php',
         'aDeleted' => '/controllers/admin-deletedCtr.php',
+        'catUpdated' => '/controllers/admin-cat-updatedCtr.php',
+        'catADD' => '/controllers/admin-cat-addCtr.php',
+        'catDeleted' => '/controllers/admin-cat-deletedCtr.php',
+        'rateUpdated' => '/controllers/admin-rate-updatedCtr.php',
+        'rateADD' => '/controllers/admin-rate-addCtr.php',
+        'rateDeleted' => '/controllers/admin-rate-deletedCtr.php',
+        'subUpdated' => '/controllers/users-sub-updatedCtr.php',
+        'subdeleted' => '/controllers/users-sub-deletedCtr.php',
+        'subdeletedYes' => '/controllers/sub-deletedCtr.php',
         
         default => '/controllers/404Ctrl.php'
     };

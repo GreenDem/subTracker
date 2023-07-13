@@ -303,11 +303,11 @@ class Subscriptions
         $db = Database::getInstance();
 
         // Ecriture de la requête
-        $sqlQuery = "UPDATE `users` 
+        $sqlQuery = "UPDATE `subscriptions` 
                     SET 
                     `date_payment`=:date_payment,
                     `price`=:price,
-                    `idFamily`=:idFamily,
+                    -- `idFamily`=:idFamily,
                     `idLabel`=:idLabel,
                     `idRate`=:idRate,
                     `idUser`=:idUser
@@ -318,7 +318,7 @@ class Subscriptions
 
         $sth->bindValue(':date_payment', $this->_date_payment);
         $sth->bindValue(':price', $this->_price);
-        $sth->bindValue(':idFamily', $this->_idFamily, PDO::PARAM_INT);
+        // $sth->bindValue(':idFamily', $this->_idFamily, PDO::PARAM_INT);
         $sth->bindValue(':idLabel', $this->_idLabel, PDO::PARAM_INT);
         $sth->bindValue(':idRate', $this->_idRate, PDO::PARAM_INT);
         $sth->bindValue(':idUser', $this->_idUser, PDO::PARAM_INT);

@@ -84,10 +84,10 @@ class Rates
      */
     public static function get(int $id): mixed
     {
-        $db = connect();
+        $db = Database::getInstance();
 
         $sql = 'SELECT * FROM `rates`
-                WHERE `idRates` = :id ;';
+                WHERE `idRate` = :id ;';
 
         $sth = $db->prepare($sql);
 
@@ -119,7 +119,9 @@ class Rates
         $sth->bindValue(':rates', $this->_rates);
         $sth->bindValue(':id', $id,PDO::PARAM_INT);
 
-        return $sth->execute();
+        if ($sth->execute()) {
+            return ($sth->rowCount() > 0) ? true : false;
+        }
     }
 
     // ******************** Delete ******************** //
@@ -139,7 +141,9 @@ class Rates
 
         $sth->bindValue(':id', $id,PDO::PARAM_INT);
 
-        return $sth->execute();
+        if ($sth->execute()) {
+            return ($sth->rowCount() > 0) ? true : false;
+        }
     }
 
 }

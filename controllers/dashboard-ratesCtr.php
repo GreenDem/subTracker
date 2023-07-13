@@ -11,7 +11,6 @@ $bootJS = '<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/boo
 
 
 $rates = Rates::getAll();
-var_dump($rates);
 
 include __DIR__ . '/../views/templates/header.php';
     include __DIR__ . '/../views/admin/dashboard-rates.php';

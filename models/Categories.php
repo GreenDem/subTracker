@@ -78,12 +78,12 @@ class Categories
      * 
      * @return array
      */
-    public static function get(int $id): array
+    public static function get(int $id): mixed
     {
         $db = connect();
 
         $sql = 'SELECT * FROM `categories`
-                WHERE `idcategory` = :id ;';
+                WHERE `idCategory` = :id ;';
 
         $sth = $db->prepare($sql);
 
@@ -101,18 +101,24 @@ class Categories
      */
     public function update(int $id): bool
     {
-        $db = connect();
+        $db = Database::getInstance();
+
+        // $sqlQuery = "UPDATE `categories` 
+        //             SET `category`= :category,
+        //             WHERE `idCategory`= :id ;";
 
         $sqlQuery = "UPDATE `categories` 
-                    SET `category`=:category,
-                    WHERE `idCategory`= :id ;'";
+        SET `category` = :category 
+        WHERE `categories`.`idCategory` = :id   ; ";
 
         $sth = $db->prepare($sqlQuery);
 
         $sth->bindValue(':category', $this->_category);
         $sth->bindValue(':id', $id, PDO::PARAM_INT);
 
-        return $sth->execute();
+        if ($sth->execute()) {
+            return ($sth->rowCount() > 0) ? true : false;
+        }
     }
 
     // ******************** Delete ******************** //
@@ -123,15 +129,33 @@ class Categories
      */
     public static function delete(int $id): bool
     {
-        $db = connect();
+        $db = Database::getInstance();
 
-        $sqlQuery = 'DELETE FROM `categories`
-        WHERE `idCategory` = :id ;';
+        $sqlQuery = 'DELETE FROM `categories` 
+        WHERE `categories`.`idCategory` = :id ' ;
 
         $sth = $db->prepare($sqlQuery);
 
-        $sth->bindValue(':idCategory', $id, PDO::PARAM_INT);
+        $sth->bindValue(':id', $id, PDO::PARAM_INT);
 
-        return $sth->execute();
+        if ($sth->execute()) {
+            return ($sth->rowCount() > 0) ? true : false;
+        }
     }
+
+    // public static function isExist(string $category): mixed
+    // {
+    //     $db = connect();
+
+    //     $sql = 'SELECT * FROM `categories`
+    //             WHERE `idCategory` = :id ;';
+
+    //     $sth = $db->prepare($sql);
+
+    //     $sth->bindValue(':id', $id, PDO::PARAM_INT);
+
+    //     $sth->execute();
+
+    //     return $sth->fetch();
+    // }
 }

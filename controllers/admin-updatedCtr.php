@@ -6,7 +6,6 @@ $userID = intval(filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT));
 
 $user = Users::get($userID);
 
-var_dump($user);
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
