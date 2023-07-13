@@ -32,6 +32,7 @@
             <button type="button" onclick="location.href='index.php?action=signIn'">Sign In</button>
             <button type="button" onclick="location.href='index.php?action=signUp'">Sign Up</button>
             <?php } else {?>
+                <a href="/index.php?action=profil"><i class="fa-solid fa-user"></i></a>
                 <button type="button" onclick="location.href='index.php?action=logOut'">Deconexion</button>
                 <?php } ?>
         </div>

@@ -107,7 +107,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             die;
         } else {
             $db->rollBack(); // Annulation de toutes les requêtes exécutées avant la levée de l'exception
-            SessionFlash::setMessage('Un problème est survenu lors de la modification');
+            SessionFlash::setMessage('Aucune modifcation');
+            header('location: /index.php?action=subHome');
+            die;        
         }
 
     }

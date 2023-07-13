@@ -229,7 +229,7 @@ class Users
     /**
      * @param int $id
      * 
-     * @return array
+     * @return mixed
      */
     public static function get(int $id): mixed
     {
@@ -260,15 +260,13 @@ class Users
 
         $sqlQuery = "UPDATE `users` 
                     SET `lastName`=:lastname,
-                    `firstName`=:firstname,
-                    `mail`=:mail
+                    `firstName`=:firstname
                     WHERE `idUser`= :id ;'";
 
         $sth = $db->prepare($sqlQuery);
 
         $sth->bindValue(':lastname', $this->_lastname);
         $sth->bindValue(':firstname', $this->_firstname);
-        $sth->bindValue(':mail', $this->_mail);
         $sth->bindValue(':id', $id, PDO::PARAM_INT);
 
         if ($sth->execute()) {
@@ -349,6 +347,31 @@ class Users
         $sth->bindValue(':lastname', $this->_lastname);
         $sth->bindValue(':firstname', $this->_firstname);
         $sth->bindValue(':admin', $this->_admin, PDO::PARAM_INT);
+        $sth->bindValue(':id', $id, PDO::PARAM_INT);
+
+        if ($sth->execute()) {
+            return ($sth->rowCount() > 0) ? true : false;
+        }
+    }
+
+
+        // ******************** Update Psw ******************** //
+    /**
+     * @param int $id
+     * 
+     * @return bool
+     */
+    public function updatePsw(int $id): bool
+    {
+        $db = connect();
+
+        $sqlQuery = "UPDATE `users` 
+                    SET `password`=:password
+                    WHERE `idUser`= :id ;'";
+
+        $sth = $db->prepare($sqlQuery);
+
+        $sth->bindValue(':password', $this->_password);
         $sth->bindValue(':id', $id, PDO::PARAM_INT);
 
         if ($sth->execute()) {

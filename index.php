@@ -26,6 +26,10 @@
         'subUpdated' => '/controllers/users-sub-updatedCtr.php',
         'subdeleted' => '/controllers/users-sub-deletedCtr.php',
         'subdeletedYes' => '/controllers/sub-deletedCtr.php',
+        'profil' => '/controllers/users-profilCtr.php',
+        'userUpdated' => '/controllers/users-updatedCtr.php',
+        'userDeleted' => '/controllers/users-deletedCtr.php',
+        'userPassword' => '/controllers/users-passwordCtr.php',
         
         default => '/controllers/404Ctrl.php'
     };

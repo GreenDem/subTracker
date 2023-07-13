@@ -344,7 +344,9 @@ class Subscriptions
 
         $sth->bindValue(':id', $id, PDO::PARAM_INT);
 
-        return $sth->execute();
+        if ($sth->execute()) {
+            return ($sth->rowCount() > 0) ? true : false;
+        }
     }
 
 
@@ -367,7 +369,7 @@ class Subscriptions
         WHERE 1 = 1 ';
 
         // if ($id != null) {
-            $sql .= 'AND `users`.`idUser` = :id;';
+        $sql .= 'AND `users`.`idUser` = :id;';
         // }
 
         if ($visibility != null) {
@@ -379,7 +381,7 @@ class Subscriptions
         $sth = $db->prepare($sql);
 
         // if ($id != null) {
-            $sth->bindValue(':id', $id, PDO::PARAM_INT);
+        $sth->bindValue(':id', $id, PDO::PARAM_INT);
         // }
 
         $sth->execute();

@@ -229,7 +229,7 @@ class Labels
      */
     public static function delete(int $id): bool
     {
-        $db = connect();
+        $db = Database::getInstance();
 
         $sqlQuery = 'DELETE FROM `labels`
         WHERE `idLabel` = :id ;';
@@ -238,6 +238,8 @@ class Labels
 
         $sth->bindValue(':id', $id, PDO::PARAM_INT);
 
-        return $sth->execute();
+        if ($sth->execute()) {
+            return ($sth->rowCount() > 0) ? true : false;
+        }
     }
 }
