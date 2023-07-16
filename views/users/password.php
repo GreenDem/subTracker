@@ -27,7 +27,7 @@
 
         </div>
         <div class="btn-up-container">
-        <button class="btn-up" type="submit">Inscription</button>
+        <button class="btn-up" type="submit">Modifier</button>
         </div>
     </fieldset>
 </form>

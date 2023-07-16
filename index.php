@@ -30,6 +30,7 @@
         'userUpdated' => '/controllers/users-updatedCtr.php',
         'userDeleted' => '/controllers/users-deletedCtr.php',
         'userPassword' => '/controllers/users-passwordCtr.php',
+        'userDelete' => '/controllers/users-profil-delete.php',
         
         default => '/controllers/404Ctrl.php'
     };

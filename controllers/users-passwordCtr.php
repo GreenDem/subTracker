@@ -28,6 +28,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         $isOk = $user->updatePsw($_SESSION['user']->idUser);
 
+        if ($isOk === true) {
+            SessionFlash::setMessage('Le mot de passe à bien été modifié');
+            header('location: /index.php?action=profil');
+            die;
+        } else {
+            $db->rollBack(); // Annulation de toutes les requêtes exécutées avant la levée de l'exception
+            SessionFlash::setMessage('Echec lors de la mise à jour du mot de passe');
+            header('location: /index.php?action=profil');
+            die;        
+        }
+
+
     }
 }
 include __DIR__ . '/../views/templates/header.php';

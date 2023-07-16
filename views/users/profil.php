@@ -1,4 +1,12 @@
+<?php if (SessionFlash::checkMessage()) { ?>
+        <div class="alert alert-success" role="alert">
+            <?= SessionFlash::getMessage() ?>
+        </div>
+    <?php } ?>
+
+    <a href="/index.php?action=userDelete">Supprimer</a>
 <h1>PROFIL</h1>
+
 
 <div>
     <p>Nom : <?= $user->lastname ?></p>
