@@ -1,7 +1,7 @@
 <div class="top">
     <p>Bonjour <?= $users->firstname ?>,</p>
-    <p>Ce mois-ci tes abonnements te coutent XXXX</p>
-    <p>Tes paiements seront de XXXX</p>
+    <p>Ce mois-ci tes abonnements te coutent <?= $cost ?> € (Pro-Rata)</p>
+    <p>Tes paiements seront de <?= $payment ?> €</p>
 </div>
 <?php if (SessionFlash::checkMessage()) { ?>
         <div class="alert alert-success" role="alert">
@@ -24,7 +24,7 @@
                 <p><?= ($sub->price / 100) ?> €</p>
                 </div>
                 <div class="rightCardText">
-                    <p>Date de paiement</p>
+                    <p>Date de Début</p>
                 <p><?= date("d-m-Y", strtotime($sub->date_payment)) ?></p>
                 <div class="links">
                 <a href="/index.php?action=subUpdated&id=<?= $sub->idSubscription ?>">Modifier</a>

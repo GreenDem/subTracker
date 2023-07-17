@@ -2,7 +2,6 @@
 require_once __DIR__ . '/../models/Categories.php';
 require_once __DIR__ . '/../models/rates.php';
 require_once __DIR__ . '/../models/subscriptions.php';
-require_once __DIR__ . '/../models/labels.php';
 Users::checkUser();
 $categories= Categories::getAll();
 $rates = Rates::getAll();
@@ -112,26 +111,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $subscriptions->setPrice($price);
         $subscriptions->setIdRate($rate);
         $subscriptions->setIdUser($_SESSION['user']->idUser);
-
-        $labels = new Labels;
-        $labels->setLabel($label);
-        $labels->setIdcategory($category);
+        $subscriptions->setLabel($label);
+        $subscriptions->setIdcategory($category);
 
         $db = Database::getInstance();
-        $db->beginTransaction();
-
-        $isLabelAdded = $labels->add();
-        $subscriptions->setIdLabel($db->lastInsertId());
 
         $isSubAdded = $subscriptions->add();
 
-        if ($isLabelAdded === true && $isSubAdded === true) {
-            $db->commit(); // Valide la transaction et exécute toutes les requetes
+        if ($isSubAdded === true) {
             SessionFlash::setMessage('L\'abonnement à bien été ajouté');
             header('location: /index.php?action=subHome');
             die;
         } else {
-            $db->rollBack(); // Annulation de toutes les requêtes exécutées avant la levée de l'exception
             SessionFlash::setMessage('Un problème est survenu lors de l\'ajout de l\'abonnement. Aucun ajout n\'a été effectué');
             header('location: /index.php?action=subHome');
             die;

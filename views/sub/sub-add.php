@@ -46,7 +46,7 @@
                 <p><?= $error["rates"] ?? "" ?></p> <br>
 
 
-                <label for="price">Tarif</label>
+                <label for="price">Prix</label>
                 <input type="number" name="price" id="price" step="0.01" required>
                 <p><?= $error["price"] ?? "" ?>
 

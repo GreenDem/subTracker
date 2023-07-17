@@ -15,7 +15,7 @@
             <?php if (!empty($_SESSION['user'])) { ?>
             <a href="/index.php?action=subHome" aria-current="page">Sub Home</a>
             <a href="/index.php?action=add">Ajouter</a>
-            <?php if ($_SESSION['user']->admin = 1) { ?>
+            <?php if ($_SESSION['user']->admin == 1) { ?>
                 <a href="/index.php?action=dash">DashBoard - Users</a>
                 <a href="/index.php?action=dashcat">DashBoard - Category</a>
                 <a href="/index.php?action=dashrat">DashBoard - Rates</a>
@@ -33,7 +33,7 @@
             <button type="button" onclick="location.href='index.php?action=signUp'">Sign Up</button>
             <?php } else {?>
                 <a href="/index.php?action=profil"><i class="fa-solid fa-user"></i></a>
-                <button type="button" onclick="location.href='index.php?action=logOut'">Deconexion</button>
+                <button type="button" onclick="location.href='index.php?action=logOut'">Deconnexion</button>
                 <?php } ?>
         </div>
     </div>

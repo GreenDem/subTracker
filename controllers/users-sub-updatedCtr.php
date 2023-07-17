@@ -2,7 +2,6 @@
 require_once __DIR__ . '/../models/Categories.php';
 require_once __DIR__ . '/../models/rates.php';
 require_once __DIR__ . '/../models/subscriptions.php';
-require_once __DIR__ . '/../models/labels.php';
 
 Users::checkUser();
 $subscriptions = Subscriptions::get($_GET['id']);
@@ -11,7 +10,6 @@ $user= $_SESSION['user'];
 $categories= Categories::getAll();
 $rates = Rates::getAll();
 $cat =[];
-$label = Labels::get($subscriptions->idLabel);
 
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -87,26 +85,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $subscription->setPrice($price);
         $subscription->setIdRate($rate);
         $subscription->setIdUser($_SESSION['user']->idUser);
-        $subscription->setIdLabel($subscriptions->idLabel);
+        $subscription->setLabel($label);
+        $subscription->setIdcategory($category);
 
-        $labels = new Labels;
-        $labels->setLabel($label);
-        $labels->setIdcategory($category);
 
-        $db = Database::getInstance();
-        $db->beginTransaction();
-
-        $isLabelAdded = $labels->update($subscriptions->idLabel);
 
         $isSubAdded = $subscription->update($subscriptions->idSubscription);
 
-        if ($isLabelAdded === true && $isSubAdded === true) {
-            $db->commit(); // Valide la transaction et exécute toutes les requetes
+        if ($isSubAdded === true) {
             SessionFlash::setMessage('L\'abonnement à bien été modifié');
             header('location: /index.php?action=subHome');
             die;
         } else {
-            $db->rollBack(); // Annulation de toutes les requêtes exécutées avant la levée de l'exception
             SessionFlash::setMessage('Aucune modifcation');
             header('location: /index.php?action=subHome');
             die;        

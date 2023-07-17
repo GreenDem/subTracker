@@ -6,7 +6,7 @@
             <legend>Ajouter un abonnement</legend>
             <div class="form-add-inner">
                 <label for="label">Titre</label>
-                <input type="text" name="label" id="label" maxlength="50" value="<?= $label->label ?>" required>
+                <input type="text" name="label" id="label" maxlength="50" value="<?= $subscriptions->label ?>" required>
                 <p><?= $error["label"] ?? "" ?></p><br>
                 <!-- Link un avatar a une catégorie Pour l affichage -->
 

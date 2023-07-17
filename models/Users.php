@@ -282,7 +282,7 @@ class Users
      */
     public static function delete(int $id): bool
     {
-        $db = connect();
+        $db = Database::getInstance();
 
         $sqlQuery = 'DELETE FROM `users`
         WHERE `idUser` = :id ;';

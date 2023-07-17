@@ -40,7 +40,7 @@ class JWT{
     }
 
 
-    public static function set(int $id, string $mail, string $admin){
+    public static function set(int $id, string $mail, string $admin=null){
 
         // header encode
         $header = json_encode(['typ' => 'JWT', 'alg' => 'HS256']);

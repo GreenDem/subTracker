@@ -10,12 +10,14 @@ class Subscriptions
     // private ?string $_date_end;
     private string $_date_payment;
     private int $_price;
+    private string $_label;
     private string $_created_at;
     private string $_updated_at;
     private ?int $_idFamily = null;
-    private int $_idLabel;
     private int $_idRate;
     private ?int $_idUser = null;
+    private int $_idCategory;
+
 
 
     // ******************** Id Subscription ******************** //
@@ -108,6 +110,25 @@ class Subscriptions
         return $this->_price;
     }
 
+        // ******************** Label ******************** //
+
+    /**
+     * @param string $label
+     * 
+     * @return void
+     */
+    public function setLabel(string $label): void
+    {
+        $this->_label = $label;
+    }
+    /**
+     * @return string
+     */
+    public function getLabel(): string
+    {
+        return $this->_label;
+    }
+
     // ******************** Created At ******************** //
     /**
      * @param string $created_at
@@ -163,24 +184,6 @@ class Subscriptions
     }
 
 
-    // ******************** id Label ******************** //
-    /**
-     * @param int $idLabel
-     * 
-     * @return void
-     */
-    public function setIdLabel(int $idLabel): void
-    {
-        $this->_idLabel = $idLabel;
-    }
-    /**
-     * @return int
-     */
-    public function getIdLabel(): int
-    {
-        return $this->_idLabel;
-    }
-
     // ******************** id Rate ******************** //
     /**
      * @param int $idRate
@@ -217,6 +220,25 @@ class Subscriptions
         return $this->_idUser;
     }
 
+        // ******************** id Category ******************** //
+
+    /**
+     * @param int $idCategory
+     * 
+     * @return void
+     */
+    public function setIdcategory(int $idCategory): void
+    {
+        $this->_idCategory = $idCategory;
+    }
+    /**
+     * @return int
+     */
+    public function getCategory(): int
+    {
+        return $this->_idCategory;
+    }
+
     // ******************** ADD ******************** // --- parametre nullable a lors de l'hydratation
     /**
      * @return bool
@@ -227,30 +249,31 @@ class Subscriptions
 
         $sqlQuery = "INSERT INTO `subscriptions` ( 
             `date_payment`, 
-            `price`, 
+            `price`,
+            `label` ,
             `idFamily`,
-            `idLabel`, 
             `idRate`, 
-            `idUser` )
+            `idUser`,
+            `idCategory`)
             VALUES (
             :date_payment, 
             :price,
+            :label,
             :idFamily,
-            :idLabel,
             :idRate,
-            :idUser
+            :idUser,
+            :idCategory
             );";
 
         $sth = $db->prepare($sqlQuery);
 
-        // $sth->bindValue(':date_start', $this->_date_start);
-        // $sth->bindValue(':date_end', $this->_date_end);
         $sth->bindValue(':date_payment', $this->_date_payment);
         $sth->bindValue(':price', $this->_price);
+        $sth->bindValue(':label', $this->_label);
         $sth->bindValue(':idFamily', $this->_idFamily ?? null, PDO::PARAM_INT);
-        $sth->bindValue(':idLabel', $this->_idLabel, PDO::PARAM_INT);
         $sth->bindValue(':idRate', $this->_idRate, PDO::PARAM_INT);
         $sth->bindValue(':idUser', $this->_idUser, PDO::PARAM_INT);
+        $sth->bindValue(':idCategory', $this->_idCategory, PDO::PARAM_INT);
 
         if ($sth->execute()) {
             return ($sth->rowCount() > 0) ? true : false;
@@ -307,10 +330,10 @@ class Subscriptions
                     SET 
                     `date_payment`=:date_payment,
                     `price`=:price,
-                    -- `idFamily`=:idFamily,
-                    `idLabel`=:idLabel,
+                    `label`=:label,
                     `idRate`=:idRate,
-                    `idUser`=:idUser
+                    `idUser`=:idUser,
+                    `idCategory` = :idCategory
                     WHERE `idSubscription`= :id ;'";
 
         // Préparation sth
@@ -319,9 +342,10 @@ class Subscriptions
         $sth->bindValue(':date_payment', $this->_date_payment);
         $sth->bindValue(':price', $this->_price);
         // $sth->bindValue(':idFamily', $this->_idFamily, PDO::PARAM_INT);
-        $sth->bindValue(':idLabel', $this->_idLabel, PDO::PARAM_INT);
+        $sth->bindValue(':label', $this->_label);
         $sth->bindValue(':idRate', $this->_idRate, PDO::PARAM_INT);
         $sth->bindValue(':idUser', $this->_idUser, PDO::PARAM_INT);
+        $sth->bindValue(':idCategory', $this->_idCategory, PDO::PARAM_INT);
         $sth->bindValue(':id', $id, PDO::PARAM_INT);
 
         return $sth->execute();
@@ -349,6 +373,27 @@ class Subscriptions
         }
     }
 
+        // ******************** Delete By Users ******************** //
+    /**
+     * @param int $id
+     * 
+     * @return bool
+     */
+    public static function deleteByUser(int $id): bool
+    {
+        $db = Database::getInstance();
+
+        $sqlQuery = 'DELETE FROM `subscriptions`
+        WHERE `idUser` = :id ;';
+
+        $sth = $db->prepare($sqlQuery);
+
+        $sth->bindValue(':id', $id, PDO::PARAM_INT);
+
+        if ($sth->execute()) {
+            return ($sth->rowCount() > 0) ? true : false;
+        }
+    }
 
     // ******************** Get ALL ******************** //
 
@@ -358,33 +403,98 @@ class Subscriptions
      * 
      * @return array
      */
-    public static function getAll(int $id = null, $visibility = null): array|false
+    public static function getAll(int $id): array|false
     {
         $db = Database::getInstance();
-        $sql = 'SELECT * FROM `categories`
-        INNER JOIN `labels` ON `categories`.`idCategory` = `labels`.`idCategory`
-        RIGHT JOIN `subscriptions` ON `labels`.`idLabel` = `subscriptions`.`idLabel`
-        LEFT JOIN `rates` ON `rates`.`idRate` = `subscriptions`.`idRate`
-        INNER JOIN `users` ON `subscriptions`.`idUser` = `users`.`idUser`
-        WHERE 1 = 1 ';
 
-        // if ($id != null) {
-        $sql .= 'AND `users`.`idUser` = :id;';
-        // }
 
-        if ($visibility != null) {
-            $sql .= 'AND `labels`.`visibility` = 1';
-        }
+        $sql= 'SELECT * FROM users
+        LEFT JOIN subscriptions
+        ON users.idUser = subscriptions.idUser
+        INNER JOIN categories
+        ON categories.idCategory = subscriptions.idCategory
+        INNER JOIN rates
+        ON rates.idRate = subscriptions.idRate
+        WHERE users.idUser = :id ;';
 
-        $sql .= ';';
 
         $sth = $db->prepare($sql);
 
-        // if ($id != null) {
         $sth->bindValue(':id', $id, PDO::PARAM_INT);
-        // }
 
         $sth->execute();
         return $sth->fetchAll();
     }
+
+
+    public static function calculCost($price, $rate){
+        $date = new DateTime();
+        $totalDay = $date->format('t');
+
+        switch ($rate) {
+            case 'Quotidienne':
+                return $price*$totalDay;
+                break;
+            case 'Mensuel':
+                return $price;
+                break;
+            case 'Trimestriel':
+                return ($price/3);
+                break;
+            case 'Annuel':
+                return ($price/12);
+                break;
+            
+            default:
+                return 'error';
+                break;
+        }
+    }
+
+    public static function calculPayment($price, $rate, $datePayment){
+        $date = new DateTime();
+        $totalDay = $date->format('t');
+        $month = $date->format('m');
+        $date2 = new DateTime($datePayment);
+        $month2 = $date2->format('m');
+        
+
+        switch ($rate) {
+            case 'Quotidienne':
+                return $price*$totalDay;
+                break;
+            case 'Mensuel':
+                return $price;
+                break;
+            case 'Trimestriel':
+                $trimDate = new DateTime($datePayment);
+                $trimDate = $trimDate->modify('+ 3 months');
+                $trimDate = $trimDate->format('m');
+                $trimDate2 = new DateTime($datePayment);
+                $trimDate2 = $trimDate2->modify('+ 6 months');
+                $trimDate2 = $trimDate2->format('m');
+                $trimDate3 = new DateTime($datePayment);
+                $trimDate3 = $trimDate3->modify('+ 9 months');
+                $trimDate3 = $trimDate3->format('m');
+                if (($month == $month2) || ($month == $trimDate) || ($month == $trimDate2) || ($month == $trimDate3)){
+                    return $price;
+                } else {
+                    return 0;
+                }
+                break;
+            case 'Annuel':
+                
+                if ($month == $month2){
+                return ($price);
+                } else {
+                return 0;
+                }
+                break;
+            
+            default:
+                return 'error';
+                break;
+        }
+    }
+
 }

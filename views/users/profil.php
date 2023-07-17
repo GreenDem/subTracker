@@ -18,5 +18,4 @@
     <?php } ?>
 </div>
 <a href="/index.php?action=userUpdated">Modifier</a>
-<a href="/index.php?action=userdeleted">Supprimer</a>
 <a href="/index.php?action=userPassword">Modifier le mot de passe </a>
