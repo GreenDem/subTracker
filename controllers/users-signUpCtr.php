@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $isOk = $user->add();
 
         if ($isOk) {
-            SessionFlash::setMessage('Votre compte a bien était crée.');
+            SessionFlash::setMessage('Votre compte a bien été crée.');
             header('location: /../index.php?action=signIn');
             die;
         }

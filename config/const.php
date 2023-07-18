@@ -7,3 +7,5 @@ define('LASTNAME', "^[A-Za-z é'èçàù\-]{2,50}$");
 define('DATE','^([0-9]{4})[\/\-]?([0-9]{2})[\/\-]?([0-9]{2})$');
 
 define('SECRET_KEY', 'fbkqe2jbfZkueC_qsbF4');
+
+

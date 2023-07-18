@@ -3,7 +3,7 @@
     
     <!-- Script a mettre en variable -->
     <footer>
-
+    <p class="footer">© Demory Nathan 2023</p>
     
     </footer>
     <?= $bootJS ?? ""?>
