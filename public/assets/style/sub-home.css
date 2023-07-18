@@ -1,5 +1,3 @@
-
-
 .alert {
     text-align: center;
     font-weight: 900;
@@ -111,25 +109,13 @@
 
 .links {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    justify-content: space-around;
     height: 7vh;
     width: 100%;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    justify-content: flex-end;
-    align-items: flex-end;
 }
 
 
 
-.links a:hover {
-    border-radius: 5px;
-    background-color: #1a5c7f;
-    transition: ease-out 0.3s;
-    cursor: pointer;
-}
 
 /* The Modal (background) */
 .modal {
@@ -170,7 +156,7 @@
     /* Could be more or less, depending on screen size */
 }
 
-.modal-link{
+.modal-link {
     display: flex;
     width: 100%;
     justify-content: space-around;
@@ -209,6 +195,11 @@
         width: 100%;
     }
 
+    .links a:hover {
+        cursor: pointer;
+    }
+
+
     .rates {
         text-transform: full-width;
     }
@@ -223,6 +214,7 @@
     .modal-content {
         width: 40%;
     }
+
     .cardContainer {
         flex-wrap: wrap;
         flex-direction: row;
@@ -238,14 +230,28 @@
         padding: 10px 0;
     }
 
-    .links a {
 
+    .links {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        justify-content: flex-end;
+        align-items: flex-end;
+    }
+
+    .links a {
         height: 4vh;
         width: 6.5vw;
         display: flex;
         justify-content: center;
         align-items: center;
         font-weight: 2vw;
+    }
+
+    .links a:hover {
+        border-radius: 5px;
+        background-color: #1a5c7f;
+        transition: ease-out 0.3s;
     }
 
 
