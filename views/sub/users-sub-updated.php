@@ -1,14 +1,19 @@
-<div class="sub-add-container">
+<div class="div-title">
+    <h1 class="form-title">MODIFIER L'ABONNEMENT</h1>
+</div>
+<div class="form-block">
+
     <form method="post">
 
-        <fieldset class="fieldset-add">
-
-            <legend>Ajouter un abonnement</legend>
-            <div class="form-add-inner">
+        <div>
+            <div class="form-div">
                 <label for="label">Titre</label>
                 <input type="text" name="label" id="label" maxlength="50" value="<?= $subscriptions->label ?>" required>
-                <p><?= $error["label"] ?? "" ?></p><br>
+                <p class="red"><?= $error["label"] ?? "" ?></p><br>
                 <!-- Link un avatar a une catégorie Pour l affichage -->
+            </div>
+            <div class="form-div">
+
 
 
                 <label for="category">Catégorie</label>
@@ -19,13 +24,17 @@
                         <option value="<?= $category->idCategory ?>" <?= $isSelected ?>><?= $category->category ?></option>
                     <?php } ?>
                 </select>
-                <p><?= $error["category"] ?? "" ?></p><br>
+                <p class="red"><?= $error["category"] ?? "" ?></p><br>
 
+            </div>
+            <div class="form-div">
 
                 <label for="date_payment">Date de l'échéance</label>
                 <input type="date" name="date_payment" id="date_payment" value="<?= $subscriptions->date_payment ?>" required>
-                <p><?= $error["date_payment"] ?? "" ?></p><br>
+                <p class="red"><?= $error["date_payment"] ?? "" ?></p><br>
 
+            </div>
+            <div class="form-div">
 
                 <label for="rates">Fréquence de Paiement</label>
                 <select name="rates" id="rates" required>
@@ -36,17 +45,20 @@
                         <option value="<?= $rate->idRate ?>" <?= $isSelected ?>><?= $rate->rates ?></option>
                     <?php } ?>
                 </select>
-                <p><?= $error["rates"] ?? "" ?></p> <br>
+                <p class="red"><?= $error["rates"] ?? "" ?></p> <br>
 
+            </div>
+            <div class="form-div">
 
                 <label for="price">Tarif</label>
                 <input type="number" name="price" id="price" step="0.01" value="<?= ($subscriptions->price / 100) ?>" required>
-                <p><?= $error["price"] ?? "" ?>
+                <p class="red"><?= $error["price"] ?? "" ?>
+            </div>
 
 
-                <div class="btn-add">
-                    <button type="submit">MODIFIER</button>
-                </div>
-        </fieldset>
+            <div class="btn-div">
+                <button class="btn" type="submit">MODIFIER</button>
+            </div>
+            </fieldset>
     </form>
 </div>

@@ -1,22 +1,28 @@
-<div class="form-in-container">
-    <form method="post" class="fieldset-in">
-        <fieldset>
-            <legend> Connexion </legend>
-            <div class="inner-fieldset-in">
-                <label for="mail" class="form-label">Email address</label>
-                <input type="email" class="" id="email" name="mail" required>
-                <p class="red"><?= $error['mail'] ?? "" ?></p>
-                <br>
-                <label for="password" class="">Password</label>
-                <input type="password" class="" id="password" name="password" required minlength="8">
-                <!-- //mi lenght 8 -->
-                <p class="red"><?= $error['password'] ?? "" ?></p>
-                <div>
-                    <input type="checkbox" id="cookie" name="cookie" value="1" checked>
-                    <label for="cookie">Rester connecté</label>
-                </div>
+<div class="div-title">
+    <h1 class="form-title">CONNEXION</h1>
+</div>
+<div class="form-block">
+    <form method="post">
+        <div>
+        <div class="form-div">
+            <label for="mail">Email address</label>
+            <input type="email" id="email" name="mail" required>
+            <p class="red"><?= $error['mail'] ?? "" ?></p>
+            </div><div class="form-div">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required minlength="8">
+            <!-- //mi lenght 8 -->
+            <p class="red"><?= $error['password'] ?? "" ?></p>
             </div>
-            <button class="btn-in" type="submit">Connexion</button>
-        </fieldset>
+
+            <div>
+                <input type="checkbox" id="cookie" name="cookie" value="1" checked>
+                <label for="cookie">Rester connecté</label>
+            </div>
+        </div>
+        <div class="btn-div">
+            <button class="btn" type="submit">Connexion</button>
+        </div>
+
     </form>
 </div>

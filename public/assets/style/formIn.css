@@ -1,77 +1,94 @@
-.form-in-container {
-    height: 86vh;
+.div-title{
+    height: 20vh;
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-family: Roboto Flex, sans-serif;
-
-}
-
-.fieldset-in {
-    height: 40%;
-    width: 95%;
+    background-color: #305a65;
     display: flex;
     justify-content: center;
     align-items: center;
 }
+.form-title{
+    text-align: center;
+    color: #FFFF;
+}
 
-.fieldset-in fieldset {
-    height: 80%;
+form{
+    padding: 10px;
     width: 80%;
+}
+
+.form-block{
+    height: 66vh;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
-    padding: 15px;
+    width: 100%;
+    justify-content: center;
+}
+
+.form-div{
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.form-div label{
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.form-div select{
     border-radius: 5px;
-
+    height: 4vh;
+    text-align: center;
+    font-weight: 500;
 }
 
-.inner-fieldset-in {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    row-gap: 5px;
-}
 
-.inner-fieldset-in input {
+.form-div input{
     border-radius: 5px;
-
+    height: 4vh;
 }
 
-.btn-in {
-    border: none;
+.btn-div{
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.btn {
+    background-color: #305a65;
+    font-family: Roboto Flex, sans-serif;
+    font-size: 16px;
     min-width: 90px;
     padding: 10px 5px;
+    margin: 0 5px;
     border-radius: 5px;
     cursor: pointer;
     border: none;
-    margin-top: 25px;
+    color: #FFFF;
 }
-
-legend {
-    width: 40%;
-    text-align: center;
-    font-weight: 900
+.red{
+    color: red;
 }
 
 /* // Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) {
-    .fieldset-in fieldset {
-        width: 50%;
-    }
+
 }
+    /* // Large devices (desktops, 992px and up) */
+    @media(min-width: 992px) {
 
-/* // X-Large devices (large desktops, 1200px and up) */
-@media (min-width: 1200px) {
-    .fieldset-in fieldset {
-        width: 35%;
-        height: 100%;
+        form{
+            padding: 10px;
+            width: 50%;
+        }
+        
+        .form-div label{
+            font-size: 1.4rem;
+        }
+        .btn{
+            min-width: 150px;
+        }
     }
-
-    .form-in-container {
-        font-size: 1.2rem;
-    }
-}
-

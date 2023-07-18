@@ -1,34 +1,34 @@
-<div class="form-up-container">
+<div class="div-title">
+    <h1 class="form-title">MODIFICATION DU MOT DE PASSE</h1>
+</div>
+<div class="form-block">
+    <form method="POST">
 
-<form method="POST">
+        <div>
+            <div class="form-div">
 
-    <fieldset class="fieldset-up">
-        <legend>Mofication du MDP</legend>
-        <div class="form-up-inner">
-
-                <label for="oldPassword" class="">Ancien mot de passe</label>
-                <input type="password" class="" id="oldPassword" name="oldPassword" required minlength="8">
+                <label for="oldPassword">Ancien mot de passe</label>
+                <input type="password" id="oldPassword" name="oldPassword" required minlength="8">
                 <!-- //mi lenght 8 -->
                 <p class="red"><?= $error['password'] ?? "" ?></p>
-                <br>
+            </div>
+            <div class="form-div">
 
-
-                <label for="password" class="">Nouveau mot de passe </label>
-                <input type="password" class="" id="password" name="password" required minlength="8">
+                <label for="password">Nouveau mot de passe </label>
+                <input type="password" id="password" name="password" required minlength="8">
                 <!-- //mi lenght 8 -->
                 <p class="red"><?= $error['password'] ?? "" ?></p>
-                <br>
+            </div>
+            <div class="form-div">
 
-                <label for="passwordCtr" class="">Confirmation</label>
-                <input type="password" class="" id="passwordCtr" required name="passwordCtr" minlength="8">
+                <label for="passwordCtr">Confirmation</label>
+                <input type="password" id="passwordCtr" required name="passwordCtr" minlength="8">
                 <p class="red"><?= $error['password'] ?? "" ?></p>
-                <br>
-
+            </div>
 
         </div>
-        <div class="btn-up-container">
-        <button class="btn-up" type="submit">Modifier</button>
+        <div class="btn-div">
+            <button class="btn" type="submit">Modifier</button>
         </div>
-    </fieldset>
-</form>
+    </form>
 </div>

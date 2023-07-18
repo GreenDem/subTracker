@@ -1,25 +1,27 @@
-<div class="form-up-container">
+<div class="div-title">
+    <h1 class="form-title">INSCRIPTION</h1>
+</div>
+<div class="form-block">
+    <form method="POST">
 
-<form method="POST">
-
-    <fieldset class="fieldset-up">
-        <legend>Modifier</legend>
-        <div class="form-up-inner">
+        <div>
+            <div class="form-div">
 
                 <label for="lastname" class="form-label">Nom</label>
-                <input type="text" class="" id="lastname" name="lastname" pattern=<?= LASTNAME ?> value="<?= $user->lastname ?>" required>
+                <input type="text" id="lastname" name="lastname" pattern=<?= LASTNAME ?> value="<?= $user->lastname ?>" required>
                 <p class="red"><?= $error['lastname'] ?? '' ?></p>
-                <br>
+            </div>
+            <div class="form-div">
 
                 <label for="firstname" class="form-label">Prénom</label>
-                <input type="text" class="" id="firstname" name="firstname" value="<?= $user->firstname ?>" required>
+                <input type="text" id="firstname" name="firstname" value="<?= $user->firstname ?>" required>
                 <p class="red"><?= $error['firstname'] ?? '' ?></p>
-                
+            </div>
+
 
         </div>
         <div class="btn-up-container">
-        <button class="btn-up" type="submit">Modifier</button>
+            <button class="btn-up" type="submit">Modifier</button>
         </div>
-    </fieldset>
-</form>
+    </form>
 </div>
