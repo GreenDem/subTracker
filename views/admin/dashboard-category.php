@@ -1,41 +1,45 @@
-<H1>DASHBOARD Categories</H1>
+<div class="div-title">
+    <h1 class="form-title">DASHBOARD CATEGORIE</h1>
+</div>
 <div class="container-fluid">
     <?php if (SessionFlash::checkMessage()) { ?>
         <div class="alert alert-success" role="alert">
             <?= SessionFlash::getMessage() ?>
         </div>
     <?php } ?>
-        <div class="row">
-    <table class="table table-striped col-6">
+    <div class="row">
+        <table class="table table-striped col-6">
 
 
 
-        <thead>
-            <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Categorie</th>
-                <th scope="col">Modifier</th>
-                <th scope="col">Supprimer</th>
-            </tr>
-        </thead>
-        <tbody>
-
-            <?php
-
-            foreach ($categories as $category) {
-                $deleteFocus = json_encode($category);
-            ?>
+            <thead>
                 <tr>
-                    <th scope="row"><?= $category->idCategory ?></th>
-                    <td><?= $category->category ?></td>
-                    <td><a href="/../index.php?action=catUpdated&id=<?= $category->idCategory ?>"> <i class="fa-regular fa-pen-to-square"></i></a></td>
-                    <td><a class="deleteModal1" data-category='<?= $deleteFocus ?>' data-bs-toggle="modal" data-bs-target="#Modal" href="/../index.php?action=catDeleted&id=<?= $category->idCategory ?>"><i class="fa-regular fa-trash-can"></i></a></td>
+                    <th scope="col">ID</th>
+                    <th scope="col">Categorie</th>
+                    <th scope="col">Modifier</th>
+                    <th scope="col">Supprimer</th>
                 </tr>
+            </thead>
+            <tbody>
 
-            <?php } ?>
-        </tbody>
-    </table>
-    <a class="btn btn-secondary col-2" href="/index.php?action=catADD">AJOUTER</a>
+                <?php
+
+                foreach ($categories as $category) {
+                    $deleteFocus = json_encode($category);
+                ?>
+                    <tr>
+                        <th scope="row"><?= $category->idCategory ?></th>
+                        <td><?= $category->category ?></td>
+                        <td><a href="/../index.php?action=catUpdated&id=<?= $category->idCategory ?>"> <i class="fa-regular fa-pen-to-square"></i></a></td>
+                        <td><a class="deleteModal1" data-category='<?= $deleteFocus ?>' data-bs-toggle="modal" data-bs-target="#Modal" href="/../index.php?action=catDeleted&id=<?= $category->idCategory ?>"><i class="fa-regular fa-trash-can"></i></a></td>
+                    </tr>
+
+                <?php } ?>
+            </tbody>
+        </table>
+        
+            <a class="btn btn-secondary col-2" href="/index.php?action=catADD">AJOUTER</a>
+        
     </div>
 </div>
 

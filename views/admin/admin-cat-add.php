@@ -1,25 +1,22 @@
-<h1>UPDATED Category</h1>
-
-<div class="form-up-container">
+<div class="div-title">
+    <h1 class="form-title">AJOUTER DE CATEGORIE</h1>
+</div>
+<div class="form-block">
 
     <form method="POST">
 
-        <fieldset class="fieldset-up">
-            <legend>Categorie</legend>
-            <div class="form-up-inner">
-
+        <div>
+            <div class="form-div">
 
                 <label for="category" class="form-label">Nom</label>
                 <input type="text" id="category" name="category" pattern=<?= LASTNAME ?> required>
                 <p class="red"><?= $error['category'] ?? '' ?></p>
-                <br>
-
-
             </div>
-            <div class="btn-up-container">
-                <button class="btn-up" type="submit">Ajouter</button>
-            </div>
+
+        </div>
+        <div class="btn-div">
+            <button class="btn" type="submit">Ajouter</button>
+        </div>
         </fieldset>
     </form>
 </div>
-

@@ -1,4 +1,6 @@
-<H1>DASHBOARD USERS</H1>
+<div class="div-title">
+    <h1 class="form-title">DASHBOARD UTILISATEURS</h1>
+</div>
 <div class="container-fluid">
     <?php if (SessionFlash::checkMessage()) { ?>
         <div class="alert alert-success" role="alert">

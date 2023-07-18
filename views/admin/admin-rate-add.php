@@ -1,25 +1,21 @@
-<h1>Ajouter une fréquence</h1>
-
-<div class="form-up-container">
+<div class="div-title">
+    <h1 class="form-title">AJOUT DE FREQUENCE</h1>
+</div>
+<div class="form-block">
 
     <form method="POST">
-
-        <fieldset class="fieldset-up">
-            <legend>Fréquence</legend>
-            <div class="form-up-inner">
-
+        <div>
+            <div class="form-div">
 
                 <label for="rate" class="form-label">Nom</label>
                 <input type="text" id="rate" name="rate" pattern=<?= LASTNAME ?> required>
                 <p class="red"><?= $error['rate'] ?? '' ?></p>
-                <br>
-
-
             </div>
-            <div class="btn-up-container">
-                <button class="btn-up" type="submit">Ajouter</button>
-            </div>
-        </fieldset>
-    </form>
+
+        </div>
+        <div class="btn-div">
+            <button class="btn" type="submit">Ajouter</button>
+        </div>
 </div>
-
+</form>
+</div>

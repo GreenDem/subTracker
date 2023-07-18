@@ -19,8 +19,7 @@ main {
     color: #FFFF;
     flex-direction: column;
     justify-content: center;
-    background-color: #367D78;
-    font-size: 2.5vh;
+    background-image: linear-gradient(15deg, #13547a 0%, #80d0c7 100%);    font-size: 2.5vh;
 }
 
 .cardContainer {
@@ -39,11 +38,8 @@ main {
     justify-content: space-between;
     padding: 0 10px;
     margin-top: 10px;
-    background: rgba(49, 67, 115, 0.81);
-    border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    border: 1px solid rgba(49, 67, 115, 0.26);
-
+    background-color: #4891a0;
+    /* background-image: linear-gradient(15deg, #13547a 0%, #80d0c7 100%);    */
 }
 
 .cardImg {
@@ -161,9 +157,9 @@ main {
 }
 
 /* // Large devices (desktops, 992px and up) */
-@media(min-width: 992px) {
+@media(min-width: 1660px) {
     .card {
-        width: 48%;
+        width: 32%;
     }
 
     .cardContainer {

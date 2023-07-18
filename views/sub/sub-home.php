@@ -32,8 +32,8 @@
                         <p><?= date("d-m-Y", strtotime($sub->date_payment)) ?></p>
                     </div>
                     <div class="links">
-                        <a href="/index.php?action=subUpdated&id=<?= $sub->idSubscription ?>">Modifier</a>
-                        <a href="/index.php?action=subdeleted&id=<?= $sub->idSubscription ?>">Supprimer</a>
+                        <a href="/index.php?action=subUpdated&id=<?= $sub->idSubscription ?>"><i class="fa-regular fa-pen-to-square" style="color: #ffffff;"></i></a>
+                        <a href="/index.php?action=subdeleted&id=<?= $sub->idSubscription ?>"><i class="fa-solid fa-trash" style="color: #ffffff;"></i></a>
                     </div>
                 </div>
             </div>
