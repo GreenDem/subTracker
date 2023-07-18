@@ -10,8 +10,8 @@
     </div>
 <?php } ?>
 <div class="cardContainer">
-    <?php foreach ($subscriptions as $sub) { ?>
-
+    <?php foreach ($subscriptions as $sub) { 
+        $deleteSub = json_encode($sub);?>
 
         <div class="card">
             <div class="cardImg">
@@ -33,11 +33,24 @@
                     </div>
                     <div class="links">
                         <a href="/index.php?action=subUpdated&id=<?= $sub->idSubscription ?>"><i class="fa-regular fa-pen-to-square" style="color: #ffffff;"></i></a>
-                        <a href="/index.php?action=subdeleted&id=<?= $sub->idSubscription ?>"><i class="fa-solid fa-trash" style="color: #ffffff;"></i></a>
+                        <a data-sub='<?= $deleteSub?>' class="modalBtn"><i class="fa-solid fa-trash" style="color: #ffffff;"></i></a>
+                        <!-- href="/index.php?action=subdeleted&id=<?= $sub->idSubscription ?>" -->
                     </div>
                 </div>
             </div>
         </div>
     <?php } ?>
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
 
+        <!-- Modal content -->
+        <div class="modal-content">
+            <p>Etes vous sur de vouloir supprimer <span id="modalSubName"></span> ? </p>
+            <div class="modal-link">
+            <a id='href'>OUI</a>
+            <a class="close">NON</a>
+            </div>
+        </div>
+
+    </div>
 </div>

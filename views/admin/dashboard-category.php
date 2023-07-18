@@ -55,8 +55,8 @@
                 Etes vous sur de vouloir supprimer <span id="modalName"></span> de la base de donnée ?
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                <a id="href" href="" type="button" class="btn btn-primary">Supprimer</a>
+                <a id="href" href="" type="button" class="btn btn-primary">OUI</a>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">NON</button>
             </div>
         </div>
     </div>

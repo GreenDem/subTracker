@@ -1,7 +1,4 @@
-main {
-    min-height: 86vh;
 
-}
 
 .alert {
     text-align: center;
@@ -19,7 +16,8 @@ main {
     color: #FFFF;
     flex-direction: column;
     justify-content: center;
-    background-image: linear-gradient(15deg, #13547a 0%, #80d0c7 100%);    font-size: 2.5vh;
+    background-image: linear-gradient(15deg, #13547a 0%, #80d0c7 100%);
+    font-size: 2.5vh;
 }
 
 .cardContainer {
@@ -50,7 +48,7 @@ main {
     padding: 15px 25px;
 }
 
-.cardImg img{
+.cardImg img {
     border-radius: 15px;
 }
 
@@ -64,7 +62,8 @@ main {
     padding: 10px 10px 0px 10px;
 
 }
-.sub-cardText{
+
+.sub-cardText {
     width: 50%;
     height: 100%;
     position: relative;
@@ -123,17 +122,76 @@ main {
     align-items: flex-end;
 }
 
-.links a {
-    text-decoration: none;
-    color: #0a1639;
-    font-weight: 500;
 
-}
 
 .links a:hover {
-    background-color: #367d78;
+    border-radius: 5px;
+    background-color: #1a5c7f;
     transition: ease-out 0.3s;
+    cursor: pointer;
 }
+
+/* The Modal (background) */
+.modal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+    border-radius: 15px;
+    text-align: center;
+    background-color: #fefefe;
+    margin: 15% auto;
+    /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* Could be more or less, depending on screen size */
+}
+
+.modal-link{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+}
+
+.modal-link a {
+    background-color: #305a65;
+    border-radius: 5px;
+    height: 4vh;
+    width: 15vw;
+    color: #FFFF;
+    text-decoration: none;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 3vh;
+    font-weight: 700;
+    cursor: pointer;
+}
+
 
 
 /* // Medium devices (tablets, 768px and up) */
@@ -149,8 +207,8 @@ main {
         align-items: center;
         height: 25%;
         width: 100%;
-        
     }
+
     .rates {
         text-transform: full-width;
     }
@@ -162,6 +220,9 @@ main {
         width: 32%;
     }
 
+    .modal-content {
+        width: 40%;
+    }
     .cardContainer {
         flex-wrap: wrap;
         flex-direction: row;
@@ -186,6 +247,6 @@ main {
         align-items: center;
         font-weight: 2vw;
     }
-    
+
 
 }

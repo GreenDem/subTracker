@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="/public/assets/style/nav.css">
     <link rel="stylesheet" href="/public/assets/style/general.css"> 
     <link rel="stylesheet" href="/public/assets/style/home.css"> 
-    <link rel="stylesheet" href="/public/assets/style/sub-home.css"> 
+    <?= $subCSS ?? ""?>
     <link rel="stylesheet" href="/public/assets/style/formIn.css"> 
 
 
