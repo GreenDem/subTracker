@@ -444,7 +444,6 @@ class Subscriptions
             case 'Annuel':
                 return ($price/12);
                 break;
-            
             default:
                 return 'error';
                 break;

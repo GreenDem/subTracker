@@ -23,6 +23,7 @@
     flex-direction: column;
     justify-content: center;
     padding: 15px;
+    align-items: center;
 
 }
 
@@ -182,6 +183,13 @@
 
 /* // Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) {
+    .card {
+
+        width: 70%;
+
+    }
+
+
     .cardText {
         font-size: 1rem;
     }
@@ -245,7 +253,6 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        font-weight: 2vw;
     }
 
     .links a:hover {
