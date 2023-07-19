@@ -7,46 +7,15 @@
             <?= SessionFlash::getMessage() ?>
         </div>
     <?php } ?>
-    <div class="table-responsive">
-
-    <table class=" table table-striped">
-
-
-
-        <thead>
-            <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Nom</th>
-                <th scope="col">Prénom</th>
-                <th scope="col">mail</th>
-                <th scope="col">Admin</th>
-                <th scope="col">Updated_at</th>
-                <th scope="col">Modifier</th>
-                <th scope="col">Supprimer</th>
-            </tr>
-        </thead>
-        <tbody>
-
-            <?php
-
-            foreach ($users as $user) {
-                $deleteFocus = json_encode($user)
-            ?>
-                <tr>
-                    <th scope="row"><?= $user->idUser ?></th>
-                    <td><?= $user->lastname ?></td>
-                    <td><?= $user->firstname ?></td>
-                    <td><?= $user->mail ?></td>
-                    <td><?= $user->admin ?></td>
-                    <td><?= $user->updated_at ?></td>
-                    <td><a href="/../index.php?action=aUpdated&id=<?= $user->idUser ?>"> <i class="fa-regular fa-pen-to-square"></i></a></td>
-                    <td><a class="deleteModal" data-user='<?= $deleteFocus ?>' data-bs-toggle="modal" data-bs-target="#Modal" href="/../index.php?action=aDeleted&id=<?= $user->idUser ?>"><i class="fa-regular fa-trash-can"></i></a></td>
-                </tr>
-
-            <?php } ?>
-        </tbody>
-    </table>
+    <div class="row col-3 m-1">
+        <input placeholder="Rechercher" type="text" name="search" id="search" onkeyup="usersearch(this.value, 1)">
     </div>
+    <div id='searchresult'>
+
+    </div>
+</div>
+<div class="pages">
+
 </div>
 
 <!-- Modal -->

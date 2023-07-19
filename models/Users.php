@@ -214,13 +214,29 @@ class Users
 
     // ******************** Get ALL ******************** //
 
-    public static function getAll(): array|false
+    public static function getAll($page, $search=null): array|false
     {
-        $db = connect();
+        $db = Database::getInstance();
 
-        $sql = 'SELECT `idUser`, `lastname`, `firstname`, `admin`, `updated_at`, `mail` FROM `users`;';
+        $sql = 'SELECT COUNT(*) OVER() as total ,`idUser`, `lastname`, `firstname`, `admin`, `updated_at`, `mail` 
+        FROM `users`
+        WHERE `lastname` LIKE :search OR `firstname` LIKE :search OR `admin` LIKE :search
+        GROUP BY `idUser`
+        ORDER BY `lastname`, `firstname`
+        LIMIT :lim OFFSET :os ;';
 
-        $sth = $db->query($sql);
+        $lim =  10;
+        $os = ($page - 1) * 10;
+
+        $sth = $db->prepare($sql);
+
+        // Préparation
+        $sth = $db->prepare($sql);
+        $sth->bindValue(':search', '%' . $search . '%');
+        $sth->bindValue(':lim', $lim, PDO::PARAM_INT);
+        $sth->bindValue(':os', $os, PDO::PARAM_INT);
+
+        $sth->execute();
 
         return $sth->fetchall();
     }
@@ -326,7 +342,7 @@ class Users
 
     public static function checkAdmin()
     {
-        if ($_SESSION['user']->admin != 1){
+        if ($_SESSION['user']->admin != 1) {
             header('location: /../index.php');
             die;
         }
@@ -355,7 +371,7 @@ class Users
     }
 
 
-        // ******************** Update Psw ******************** //
+    // ******************** Update Psw ******************** //
     /**
      * @param int $id
      * 
@@ -378,4 +394,27 @@ class Users
             return ($sth->rowCount() > 0) ? true : false;
         }
     }
+
+
+        // ******************** Count for pagination ******************** //
+
+    /**Count Number of users
+     * @return int
+     */
+    public static function count(): int
+    {
+        $db = Database::getInstance();
+
+        $sqlQuery = 'SELECT COUNT(idUser) AS `usersNb`
+        FROM `users`
+        ORDER BY `idUser`;';
+
+        // Préparation
+        $sth = $db->prepare($sqlQuery);
+
+        $sth->execute();
+
+        return $sth->fetchColumn();
+    }
+
 }
