@@ -98,7 +98,7 @@ function usersearch(str, page) {
 
                 let pagination = "";
                 for ($i = 1; $i <= Math.ceil(data[0].total / 10); $i++) {
-                    pagination += ` <button onclick="usersearch('` + input.value + `',` + $i + `)">Page` + $i + `</button> `
+                    pagination += ` <button onclick="usersearch('` + input.value + `',` + $i + `)">`+ $i + `</button> `
                 }
 
 

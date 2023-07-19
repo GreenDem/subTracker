@@ -111,12 +111,39 @@ footer {
     padding: 3px;
 }
 
+.pages{
+    width: 100%;
+    padding: 15px;
+}
+.pages button{
+        background-color: #305a65;
+    border-radius: 5px;
+    height: 4vh;
+    width: 12vw;
+    color: #FFFF;
+    text-decoration: none;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 3vh;
+    font-weight: 700;
+    cursor: pointer;
+    padding: 3px;
+}
 /* // Medium devices (tablets, 768px and up) */
 
 @media (min-width: 768px) {
 .profil-infos p{
     font-size: 1.4rem;
 }
+
+.pages button{
+
+    width: 5vw;
+
+}
+
 }
 
 /* // Large devices (desktops, 992px and up) */
@@ -139,4 +166,11 @@ footer {
         width: 50%;
         margin: auto;
   }
+
+  .pages button{
+
+    width: 4vw;
+
+}
+
 }

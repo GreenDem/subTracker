@@ -3,11 +3,11 @@
 </div>
 <div class="container-fluid">
     <?php if (SessionFlash::checkMessage()) { ?>
-        <div class="alert alert-success" role="alert">
+        <div class="alert alert-success m-1" role="alert">
             <?= SessionFlash::getMessage() ?>
         </div>
     <?php } ?>
-    <div class="row col-3 m-1">
+    <div class="row col-5 col-md-3 m-1">
         <input placeholder="Rechercher" type="text" name="search" id="search" onkeyup="usersearch(this.value, 1)">
     </div>
     <div id='searchresult'>
