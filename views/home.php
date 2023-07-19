@@ -6,7 +6,7 @@
     <a class="inscription" href="/index.php?action=signUp">INSCRIPTION</a>
 </div>
     <div class="right-top-content">
-        <img src="/Logo/home.png" alt="Cochon tirelire">
+        <img src="/public/assets/img/logo.png" alt="Cochon tirelire">
     </div>
 </div>
 <div class="botContainer">

@@ -163,7 +163,7 @@ class Categories
 
         switch ($category) {
             case 'Musique':
-                return '/public/assets/img/deezerLogo.jpg';
+                return '/public/assets/img/musique.jpg';
                 break;
             case 'Vidéo':
                 return '/public/assets/img/video.png';

@@ -15,7 +15,7 @@
 
         <div class="card">
             <div class="cardImg">
-                <img src="<?= Categories::catLogo($sub->category) ?>" alt="">
+                <img src="<?= Categories::catLogo($sub->category) ?>" alt="Category Logo">
             </div>
             <div class="cardText">
                 <div class="sub-cardText">
@@ -32,7 +32,7 @@
                         <p><?= date("d-m-Y", strtotime($sub->date_payment)) ?></p>
                     </div>
                     <div class="links">
-                        <a href="/index.php?action=subUpdated&id=<?= $sub->idSubscription ?>"><i class="fa-regular fa-pen-to-square fa-xl" style="color: #ffffff;"></i></a>
+                        <a href="/index.php?action=subUpdated&id=<?= $sub->idSubscription ?>" aria-label="Update page"><i class="fa-regular fa-pen-to-square fa-xl" style="color: #ffffff;"></i></a>
                         <a data-sub='<?= $deleteSub?>' class="modalBtn"><i class="fa-solid fa-trash fa-xl" style="color: #ffffff;"></i></i></a>
                         <!-- href="/index.php?action=subdeleted&id=<?= $sub->idSubscription ?>" -->
                     </div>
@@ -47,8 +47,8 @@
         <div class="modal-content">
             <p>Etes vous sur de vouloir supprimer <span id="modalSubName"></span> ? </p>
             <div class="modal-link">
-            <a id='href'>OUI</a>
-            <a class="close">NON</a>
+            <button aria-label="Accept Delete" id='href'>OUI</button>
+            <button aria-label="Refuse Delete"class="close">NON</button>
             </div>
         </div>
 

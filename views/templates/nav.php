@@ -1,7 +1,7 @@
 <nav>
 
     <a href="/" class="nav-icon" aria-label="homepage" aria-current="page">
-        <img src="/public/assets/img/logo.png" alt="chat icon" />
+        <img src="/public/assets/img/logo75.png" alt="chat icon" />
         <span>SubTracker</span>
     </a>
 
@@ -30,19 +30,19 @@
                 <i class="fa-solid fa-user" style="color: #000000;"></i>
             </a>
         <?php } else { ?>
-            <a href="index.php?action=profil" class="user-toggler" aria-label="Sign in page">
+            <a href="index.php?action=profil" class="user-toggler" aria-label="Profil page">
                 <img src="/public/assets/img/user.svg" alt="user icon" />
             </a>
-            <a href="index.php?action=logOut" class="user-toggler" aria-label="Sign in page">
+            <a href="index.php?action=logOut" class="user-toggler" aria-label="Sign out page">
                 <i class="fa-solid fa-right-from-bracket" style="color: #000000;"></i>
             </a>
         <?php } ?>
         <div class="sign-btns">
             <?php if (empty($_SESSION['user'])) { ?>
-                <button type="button" onclick="location.href='index.php?action=signIn'">Sign In</button>
+                <button aria-label="Sign in page" type="button" onclick="location.href='index.php?action=signIn'">Sign In</button>
                 <button type="button" onclick="location.href='index.php?action=signUp'">Sign Up</button>
             <?php } else { ?>
-                <button onclick="location.href='index.php?action=profil'"><i class="fa-solid fa-user"></i></button>
+                <button aria-label="Profil page" onclick="location.href='index.php?action=profil'"><i class="fa-solid fa-user"></i></button>
                 <button type="button" onclick="location.href='index.php?action=logOut'">Deconnexion</button>
             <?php } ?>
         </div>
