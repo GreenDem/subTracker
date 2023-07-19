@@ -20,7 +20,7 @@
                 <select name="category" id="category" required>
                     <?php
                     foreach ($categories as $category) { ?>
-                        <?php $isSelected = ($category->idCategory == $label->idCategory) ? "selected" : "" ?>
+                        <?php $isSelected = ($category->idCategory == $subscriptions->idCategory) ? "selected" : "" ?>
                         <option value="<?= $category->idCategory ?>" <?= $isSelected ?>><?= $category->category ?></option>
                     <?php } ?>
                 </select>
