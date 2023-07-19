@@ -15,7 +15,7 @@
 
         <div class="card">
             <div class="cardImg">
-                <img src="/public/assets/img/deezerLogo.jpg" alt="">
+                <img src="<?= Categories::catLogo($sub->category) ?>" alt="">
             </div>
             <div class="cardText">
                 <div class="sub-cardText">

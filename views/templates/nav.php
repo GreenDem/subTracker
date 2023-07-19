@@ -13,12 +13,12 @@
         </button>
         <div class="navlinks-container">
             <?php if (!empty($_SESSION['user'])) { ?>
-                <a href="/index.php?action=subHome" aria-current="page">Sub Home</a>
-                <a href="/index.php?action=add">Ajouter</a>
+                <a class="hover" href="/index.php?action=subHome" aria-current="page">Sub Home</a>
+                <a class="hover" href="/index.php?action=add">Ajouter</a>
                 <?php if ($_SESSION['user']->admin == 1) { ?>
-                    <a href="/index.php?action=dash">DashBoard - Users</a>
-                    <a href="/index.php?action=dashcat">DashBoard - Category</a>
-                    <a href="/index.php?action=dashrat">DashBoard - Rates</a>
+                    <a class="hover" href="/index.php?action=dash">DashBoard - Users</a>
+                    <a class="hover" href="/index.php?action=dashcat">DashBoard - Category</a>
+                    <a class="hover" href="/index.php?action=dashrat">DashBoard - Rates</a>
             <?php }
             } ?>
         </div>
@@ -27,7 +27,7 @@
     <div class="nav-authentication">
         <?php if (empty($_SESSION['user'])) { ?>
             <a href="index.php?action=signIn" class="user-toggler" aria-label="Sign in page">
-            <i class="fa-solid fa-user" style="color: #000000;"></i>
+                <i class="fa-solid fa-user" style="color: #000000;"></i>
             </a>
         <?php } else { ?>
             <a href="index.php?action=profil" class="user-toggler" aria-label="Sign in page">

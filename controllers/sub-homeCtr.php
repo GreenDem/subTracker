@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/../models/Subscriptions.php';
+require_once __DIR__ . '/../models/Categories.php';
 Users::checkUser();
 
 $user= $_SESSION['user'];

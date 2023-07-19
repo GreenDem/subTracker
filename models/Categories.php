@@ -158,4 +158,31 @@ class Categories
 
     //     return $sth->fetch();
     // }
+
+    public static function catLogo( string $category) : string {
+
+        switch ($category) {
+            case 'Musique':
+                return '/public/assets/img/deezerLogo.jpg';
+                break;
+            case 'Vidéo':
+                return '/public/assets/img/video.png';
+                break;
+            case 'Sport':
+                return '/public/assets/img/sport.png';
+                break;
+            case 'Finance':
+                return '/public/assets/img/finance.png';
+                break;
+            case 'Charges':
+                return '/public/assets/img/charges.png';
+                break;
+
+            
+            default:
+                return "/public/assets/img/autres.png";
+                break;
+        }
+
+    }
 }
