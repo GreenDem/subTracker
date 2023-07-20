@@ -2,7 +2,7 @@
 <div class="left-top-content">
     <h1>SubTracker</h1>
     <p>Vous avez perdu le compte de vos abonnements ?</p>
-    <p>Vous etes au bon endroit ! </p>
+    <p>Vous êtes au bon endroit ! </p>
     <a class="inscription" href="/index.php?action=signUp">INSCRIPTION</a>
 </div>
     <div class="right-top-content">

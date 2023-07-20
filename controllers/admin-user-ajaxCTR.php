@@ -12,5 +12,3 @@ $input = json_decode(file_get_contents("php://input"));;
 $output = Users::getAll( $input->page, $input->search);
 // On envoie le tout en JSON
 echo json_encode($output);
- 
-?>

@@ -1,14 +1,14 @@
 <?php
 
 Users::checkUser();
-$user=Users::get($_SESSION['user']->idUser);
+$user = Users::get($_SESSION['user']->idUser);
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    
+
     $password = $_POST['oldPassword'];
     $userHash = $user->password;
-        if (!password_verify($password, $userHash)) {
-            $error['password'] = "Mauvais Mot de Passe";
-        }
+    if (!password_verify($password, $userHash)) {
+        $error['password'] = "Mauvais Mot de Passe";
+    }
 
 
     $password = $_POST['password'];
@@ -35,10 +35,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $db->rollBack(); // Annulation de toutes les requêtes exécutées avant la levée de l'exception
             SessionFlash::setMessage('Echec lors de la mise à jour du mot de passe');
             header('location: /index.php?action=profil');
-            die;        
+            die;
         }
-
-
     }
 }
 include __DIR__ . '/../views/templates/header.php';

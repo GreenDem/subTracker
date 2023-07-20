@@ -1,4 +1,4 @@
-<?php 
+<?php
 Users::checkUser();
 Users::checkAdmin();
 
@@ -15,6 +15,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (empty($firstname)) {
         $error['firstname'] = 'Le prénom est obligatoire.';
     }
+    if (!preg_match("/" . LASTNAME . "/", $firstname)) {
+        $error['lastname'] = "Il y a une erreur dans votre prénom";
+    }
 
 
     $lastname = filter_input(INPUT_POST, 'lastname', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -26,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     }
 
-    $admin= filter_input(INPUT_POST, 'admin', FILTER_SANITIZE_NUMBER_INT);
+    $admin = filter_input(INPUT_POST, 'admin', FILTER_SANITIZE_NUMBER_INT);
 
 
     if (empty($error)) {
@@ -42,8 +45,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             SessionFlash::setMessage('La Modification a bien été enregistré');
             header('location: /../index.php?action=dash');
             die;
-        }else {
-            SessionFlash::setMessage('aucune modification n\'a été effectuée');
+        } else {
+            SessionFlash::setMessage('Aucune modification n\'a été effectuée');
             header('location: /../index.php?action=dash');
         }
     }
@@ -55,4 +58,3 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 include __DIR__ . '/../views/templates/header.php';
 include __DIR__ . '/../views/admin/admin-updated.php';
 include __DIR__ . '/../views/templates/footer.php';
-

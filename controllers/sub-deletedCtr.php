@@ -1,12 +1,11 @@
 <?php
 
-require_once __DIR__ . '/../models/subscriptions.php';
+require_once __DIR__ . '/../models/Subscriptions.php';
 
-$id=$_GET['id'];
+$id = intval(filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT));;
 
 Users::checkUser();
 $subscriptions = Subscriptions::get($id);
-
 
 $isOk = Subscriptions::delete($id);
 
@@ -20,5 +19,3 @@ if ($isOk === true) {
     header('location: /index.php?action=subHome');
     die;
 }
-
-

@@ -18,15 +18,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (empty($firstname)) {
         $error['firstname'] = 'Le prénom est obligatoire.';
     }
+    if (!preg_match("/" . LASTNAME . "/", $firstname)) {
+        $error['lastname'] = "Il y a une erreur dans votre prénom";
+    }
 
 
     $lastname = filter_input(INPUT_POST, 'lastname', FILTER_SANITIZE_SPECIAL_CHARS);
     if (empty($lastname)) {
         $error['lastname'] = 'Le nom est obligatoire.';
     } else {
-        // if (!preg_match("/" . $regex['lastname'] . "/", $lastname)) {
-        //     $error['lastname'] = "Il y a une erreur dans votre nom";
-        // }
+        if (!preg_match("/" . LASTNAME . "/", $lastname)) {
+            $error['lastname'] = "Il y a une erreur dans votre nom";
+        }
     }
 
     $password = $_POST['password'];
@@ -49,9 +52,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $isOk = $user->add();
 
         if ($isOk) {
-            $user=Users::getByMail($mail);
-            $_SESSION['user']= $user;
-            SessionFlash::setMessage('Votre compte a bien été crée.');
+            $user = Users::getByMail($mail);
+            $_SESSION['user'] = $user;
+            SessionFlash::setMessage('Votre compte a bien été créé.');
             header('location: /../index.php?action=subHome');
             die;
         }

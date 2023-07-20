@@ -4,7 +4,9 @@ require_once __DIR__ . '/../models/Rates.php';
 require_once __DIR__ . '/../models/Subscriptions.php';
 
 Users::checkUser();
-$subscriptions = Subscriptions::get($_GET['id']);
+$id = intval(filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT));
+
+$subscriptions = Subscriptions::get($id);
 
 $user= $_SESSION['user'];
 $categories= Categories::getAll();

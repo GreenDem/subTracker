@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ .'/../models/Rates.php';
+require_once __DIR__ . '/../models/Rates.php';
 Users::checkUser();
 Users::checkAdmin();
 
@@ -11,10 +11,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $error['rate'] = 'Le nom de la catégorie est obligatoire';
     }
 
-    if (empty($error)){
+    if (empty($error)) {
         $rates = new Rates;
         $rates->setrates($rate);
-        
+
 
         $isOk = $rates->add();
 
@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             SessionFlash::setMessage('La fréquence a bien été enregistré');
             header('location: /../index.php?action=dashrat');
             die;
-        }else {
+        } else {
             SessionFlash::setMessage('La création n\'a été effectuée');
             header('location: /../index.php?action=dashrat');
         }

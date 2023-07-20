@@ -3,9 +3,11 @@
 require_once __DIR__ . '/../models/subscriptions.php';
 require_once __DIR__ . '/../models/labels.php';
 
-
 Users::checkUser();
-$subscriptions = Subscriptions::get($_GET['id']);
+
+$id = intval(filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT));
+
+$subscriptions = Subscriptions::get($id);
 
 
 

@@ -1,11 +1,12 @@
 <?php
 
-if (!empty($_COOKIE['user'])){
+if (!empty($_COOKIE['user'])) {
     $cookie = $_COOKIE['user'];
-    if ($cookie){
-        $_SESSION['user']= $cookie;   }
+    if ($cookie) {
+        $_SESSION['user'] = $cookie;
+    }
 }
-if (!empty($_SESSION['user'])){
+if (!empty($_SESSION['user'])) {
     header('location: /../index.php?action=subHome');
     die;
 }

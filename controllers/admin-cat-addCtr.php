@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ .'/../models/Categories.php';
+require_once __DIR__ . '/../models/Categories.php';
 Users::checkUser();
 Users::checkAdmin();
 
@@ -11,18 +11,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $error['category'] = 'Le nom de la catégorie est obligatoire';
     }
 
-    if (empty($error)){
+    if (empty($error)) {
         $categories = new Categories;
         $categories->setcategory($category);
-        
+
 
         $isOk = $categories->add();
 
         if ($isOk) {
-            SessionFlash::setMessage('La categorie a bien été enregistré');
+            SessionFlash::setMessage('La categorie a bien été enregistrée');
             header('location: /../index.php?action=dashcat');
             die;
-        }else {
+        } else {
             SessionFlash::setMessage('La création n\'a été effectuée');
             header('location: /../index.php?action=dashcat');
         }

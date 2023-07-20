@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ .'/../models/Rates.php';
+require_once __DIR__ . '/../models/Rates.php';
 Users::checkUser();
 Users::checkAdmin();
 
@@ -11,14 +11,21 @@ $rate = Rates::get($rateID);
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $rate = filter_input(INPUT_POST, 'rate', FILTER_SANITIZE_SPECIAL_CHARS);
+    $rat = array_column($rates, 'idRate');
+
+    $rate = filter_input(INPUT_POST, 'rates', FILTER_SANITIZE_NUMBER_INT);
     if (empty($rate)) {
-        $error['rate'] = 'Le prénom est obligatoire.';
+        $error['rates'] = "Champ Obligatoire";
+    } else {
+        if (!in_array($rate, $rat)) {
+            $error['rates'] = "La fréquence doit se trouver dans la liste";
+        }
     }
 
-    if (empty($error)){
+    if (empty($error)) {
         $rates = new Rates;
         $rates->setRates($rate);
-        
+
 
         $isOk = $rates->update($rateID);
 
@@ -26,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             SessionFlash::setMessage('La Modification a bien été enregistré');
             header('location: /../index.php?action=dashrat');
             die;
-        }else {
+        } else {
             SessionFlash::setMessage('Aucune modification n\'a été effectuée');
             header('location: /../index.php?action=dashrat');
         }

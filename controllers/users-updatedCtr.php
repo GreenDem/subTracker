@@ -2,7 +2,7 @@
 require_once __DIR__ . '/../models/Subscriptions.php';
 
 Users::checkUser();
-$user=Users::get($_SESSION['user']->idUser);
+$user = Users::get($_SESSION['user']->idUser);
 
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -12,15 +12,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (empty($firstname)) {
         $error['firstname'] = 'Le prénom est obligatoire.';
     }
+    if (!preg_match("/" . LASTNAME . "/", $firstname)) {
+        $error['lastname'] = "Il y a une erreur dans votre prénom";
+    }
 
 
     $lastname = filter_input(INPUT_POST, 'lastname', FILTER_SANITIZE_SPECIAL_CHARS);
     if (empty($lastname)) {
         $error['lastname'] = 'Le nom est obligatoire.';
     } else {
-        // if (!preg_match("/" . $regex['lastname'] . "/", $lastname)) {
-        //     $error['lastname'] = "Il y a une erreur dans votre nom";
-        // }
+        if (!preg_match("/" . LASTNAME . "/", $lastname)) {
+            $error['lastname'] = "Il y a une erreur dans votre nom";
+        }
     }
 
 
@@ -33,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $isOk = $users->update($user->idUser);
 
         if ($isOk) {
-            SessionFlash::setMessage('Votre compte a bien était crée.');
+            SessionFlash::setMessage('Votre compte a bien été modifié.');
             header('location: /../index.php?action=profil');
             die;
         }

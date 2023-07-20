@@ -7,5 +7,5 @@ $bootJS = '<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/boo
 $ajaxJS = '<script src="/public/assets/script/ajax.js"></script>';
 
 include __DIR__ . '/../views/templates/header.php';
-    include __DIR__ . '/../views/admin/dashboard-users.php';
+include __DIR__ . '/../views/admin/dashboard-users.php';
 include __DIR__ . '/../views/templates/footer.php';

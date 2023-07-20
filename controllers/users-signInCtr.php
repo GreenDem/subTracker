@@ -5,14 +5,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $mail =  filter_input(INPUT_POST, 'mail', FILTER_SANITIZE_EMAIL);
     if (empty($mail)) {
-        $error['mail'] = 'Merci de rensigner votre Email';
+        $error['mail'] = 'Merci de renseigner votre Email';
     } else {
         $mail =  filter_var($mail, FILTER_VALIDATE_EMAIL);
         if ($mail == false) {
             $error['mail'] = "Saisie incorrect";
         }
     }
-    $cookie= filter_input(INPUT_POST, 'cookie', FILTER_SANITIZE_NUMBER_INT);
+    $cookie = filter_input(INPUT_POST, 'cookie', FILTER_SANITIZE_NUMBER_INT);
     $user = Users::isMailExists($mail);
 
 
@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (empty($error)) {
         $user = Users::getByMail($mail);
         $_SESSION['user'] = $user;
-        if ($cookie == 1){
+        if ($cookie == 1) {
             $JWT = JWT::set($user->idUser, $user->mail, $user->admin);
             setcookie('user', $JWT, time() + (86400 * 30), '/');
         }
