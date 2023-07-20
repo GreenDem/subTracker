@@ -4,7 +4,6 @@ require_once __DIR__ . '/../models/Subscriptions.php';
 Users::checkUser();
 $user=Users::get($_SESSION['user']->idUser);
 
-var_dump($user);
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 

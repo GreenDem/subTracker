@@ -48,7 +48,7 @@
             <p>Etes vous sur de vouloir supprimer <span id="modalSubName"></span> ? </p>
             <div class="modal-link">
             <button aria-label="Accept Delete" id='href'>OUI</button>
-            <button aria-label="Refuse Delete"class="close">NON</button>
+            <button aria-label="Refuse Delete" class="close">NON</button>
             </div>
         </div>
 

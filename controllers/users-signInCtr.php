@@ -25,6 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $error['mail'] = 'L\'utilisateur n\'existe pas';
     }
     if (empty($error)) {
+        $user = Users::getByMail($mail);
         $_SESSION['user'] = $user;
         if ($cookie == 1){
             $JWT = JWT::set($user->idUser, $user->mail, $user->admin);

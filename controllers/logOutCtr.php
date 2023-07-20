@@ -1,5 +1,6 @@
 <?php
-
+require_once __DIR__ . '/../helpers/SessionFlash.php';
+SessionFlash::start();
 session_destroy();
   // Suppression du cookie 
   setcookie('user');

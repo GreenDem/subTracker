@@ -6,7 +6,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     
     $password = $_POST['oldPassword'];
     $userHash = $user->password;
-    var_dump($password);
         if (!password_verify($password, $userHash)) {
             $error['password'] = "Mauvais Mot de Passe";
         }

@@ -1,5 +1,5 @@
 <?php
-
+SessionFlash::start();
 
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -38,7 +38,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $error['password'] = "Les mots de passes ne corresondent pas.";
     }
 
-    var_dump($error);
     if (empty($error)) {
 
         $user = new Users;
@@ -47,12 +46,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $user->setMail($mail);
         $user->setPassword($password);
 
-        var_dump($user);
         $isOk = $user->add();
 
         if ($isOk) {
+            $user=Users::getByMail($mail);
+            $_SESSION['user']= $user;
             SessionFlash::setMessage('Votre compte a bien été crée.');
-            header('location: /../index.php?action=signIn');
+            header('location: /../index.php?action=subHome');
             die;
         }
     }

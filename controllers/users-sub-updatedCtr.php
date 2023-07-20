@@ -15,7 +15,6 @@ $cat =[];
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $cat = array_column($categories, 'idCategory');
     $rat= array_column($rates, 'idRate');
-    var_dump($cat);
     // ==============================REQUIS=================================
 
 
@@ -29,7 +28,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $error['label'] = "Le titre est trop long";
         }
     }
-    var_dump($cat);
     // ==========     CATEGORY      =========
     $category =  filter_input(INPUT_POST, 'category', FILTER_SANITIZE_NUMBER_INT);;
     if (empty($category)) {

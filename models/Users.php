@@ -417,4 +417,26 @@ class Users
         return $sth->fetchColumn();
     }
 
+
+        // ******************** Get ******************** //
+    /**
+     * @param int $id
+     * 
+     * @return mixed
+     */
+    public static function getByMail(string $mail): mixed
+    {
+        $db = Database::getInstance();
+
+        $sql = 'SELECT `idUser` , `lastname`, `firstname` , `mail` , `admin`  FROM `users`
+                WHERE `mail` = :mail ;';
+
+        $sth = $db->prepare($sql);
+
+        $sth->bindValue(':mail', $mail, PDO::PARAM_INT);
+
+        $sth->execute();
+
+        return $sth->fetch();
+    }
 }
