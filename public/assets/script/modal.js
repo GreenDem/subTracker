@@ -30,8 +30,9 @@ let deleteModalSubHref = document.getElementById('href')
 btn.forEach(trash => {
     trash.addEventListener('click', (e) =>{
         modal.style.display = "block";
-        let bob =JSON.parse(e.target.parentElement.dataset.sub)
+        let bob =JSON.parse(e.target.dataset.sub)
         deleteModalSubName.innerText = bob.label
+        console.log(bob)
         deleteModalSubHref.href = '/../index.php?action=subdeletedYes&id=' + bob.idSubscription
     })
 })

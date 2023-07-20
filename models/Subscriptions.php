@@ -396,8 +396,6 @@ class Subscriptions
     }
 
     // ******************** Get ALL ******************** //
-
-
     /**
      * @param int $id
      * 
@@ -408,14 +406,21 @@ class Subscriptions
         $db = Database::getInstance();
 
 
-        $sql= 'SELECT * FROM users
-        LEFT JOIN subscriptions
-        ON users.idUser = subscriptions.idUser
-        INNER JOIN categories
-        ON categories.idCategory = subscriptions.idCategory
-        INNER JOIN rates
-        ON rates.idRate = subscriptions.idRate
-        WHERE users.idUser = :id ;';
+        $sql= 'SELECT 
+        `categories`.`category`,
+        `subscriptions`.`idSubscription`,
+        `subscriptions`.`label`,
+        `subscriptions`.`price`,
+        `rates`.`rates`,
+        `subscriptions`.`date_payment`
+         FROM `users`
+        LEFT JOIN `subscriptions`
+        ON `users`.`idUser` = `subscriptions`.`idUser`
+        INNER JOIN `categories`
+        ON `categories`.`idCategory` = `subscriptions`.`idCategory`
+        INNER JOIN `rates`
+        ON `rates`.`idRate` = `subscriptions`.`idRate`
+        WHERE `users`.`idUser` = :id ;';
 
 
         $sth = $db->prepare($sql);

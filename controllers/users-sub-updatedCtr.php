@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/../models/Categories.php';
-require_once __DIR__ . '/../models/rates.php';
-require_once __DIR__ . '/../models/subscriptions.php';
+require_once __DIR__ . '/../models/Rates.php';
+require_once __DIR__ . '/../models/Subscriptions.php';
 
 Users::checkUser();
 $subscriptions = Subscriptions::get($_GET['id']);

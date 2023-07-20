@@ -1,8 +1,13 @@
 <div class="top">
     <h1>SubTracker</h1>
+    <?php if(empty($subscriptions)) {?>
+        <p>Pour commencer, veuillez ajouter un abonnement.</p>
+
+        <?php } else {?>
     <p>Bonjour <?= $users->firstname ?>,</p>
     <p>Cout mensuel moyen <?= $cost ?> €</p>
     <p>Ce mois-ci tes paiements seront de <?= $payment ?> €</p>
+    <?php } ?>
 </div>
 <?php if (SessionFlash::checkMessage()) { ?>
     <div class="alert">
@@ -34,7 +39,6 @@
                     <div class="links">
                         <a href="/index.php?action=subUpdated&id=<?= $sub->idSubscription ?>" aria-label="Update page"><i class="fa-regular fa-pen-to-square fa-xl" style="color: #ffffff;"></i></a>
                         <i class="fa-solid fa-trash fa-xl modalBtn" data-sub='<?= $deleteSub?>' style="color: #ffffff;"></i>
-                        <!-- href="/index.php?action=subdeleted&id=<?= $sub->idSubscription ?>" -->
                     </div>
                 </div>
             </div>
@@ -47,7 +51,7 @@
         <div class="modal-content">
             <p>Etes vous sur de vouloir supprimer <span id="modalSubName"></span> ? </p>
             <div class="modal-link">
-            <button aria-label="Accept Delete" id='href'>OUI</button>
+            <a href="/" aria-label="Accept Delete" id='href'>OUI</a>
             <button aria-label="Refuse Delete" class="close">NON</button>
             </div>
         </div>

@@ -433,7 +433,7 @@ class Users
 
         $sth = $db->prepare($sql);
 
-        $sth->bindValue(':mail', $mail, PDO::PARAM_INT);
+        $sth->bindValue(':mail', $mail);
 
         $sth->execute();
 
