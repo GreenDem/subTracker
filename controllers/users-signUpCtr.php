@@ -60,5 +60,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
 include __DIR__ . '/../views/templates/header.php';
-include __DIR__ . '/../views/users/form-SignUP.php';
+include __DIR__ . '/../views/users/form-SignUp.php';
 include __DIR__ . '/../views/templates/footer.php';

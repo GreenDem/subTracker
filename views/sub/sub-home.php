@@ -33,7 +33,7 @@
                     </div>
                     <div class="links">
                         <a href="/index.php?action=subUpdated&id=<?= $sub->idSubscription ?>" aria-label="Update page"><i class="fa-regular fa-pen-to-square fa-xl" style="color: #ffffff;"></i></a>
-                        <a data-sub='<?= $deleteSub?>' class="modalBtn"><i class="fa-solid fa-trash fa-xl" style="color: #ffffff;"></i></i></a>
+                        <i class="fa-solid fa-trash fa-xl modalBtn" data-sub='<?= $deleteSub?>' style="color: #ffffff;"></i>
                         <!-- href="/index.php?action=subdeleted&id=<?= $sub->idSubscription ?>" -->
                     </div>
                 </div>

@@ -145,7 +145,7 @@
     border-radius: 15px;
     text-align: center;
     background-color: #fefefe;
-    margin: 15% auto;
+    margin: 25% auto;
     /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
@@ -163,7 +163,7 @@
     justify-content: space-around;
 }
 
-.modal-link a {
+.modal-link button {
     background-color: #305a65;
     border-radius: 5px;
     height: 4vh;

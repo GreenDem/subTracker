@@ -6,15 +6,17 @@
     </a>
 
     <div class="main-navlinks">
+    <?php if (!empty($_SESSION['user'])) { ?>
         <button type="button" class="hamburger" aria-label="Toggle Navigation" aria-expanded="false">
             <span></span>
             <span></span>
             <span></span>
         </button>
+        <?php } ?>
         <div class="navlinks-container">
             <?php if (!empty($_SESSION['user'])) { ?>
-                <a class="hover" href="/index.php?action=subHome" aria-current="page">Sub Home</a>
-                <a class="hover" href="/index.php?action=add">Ajouter</a>
+                <a class="hover" href="/index.php?action=subHome" aria-current="page">Accueil</a>
+                <a class="hover" href="/index.php?action=add">Ajouter un abonnement</a>
                 <?php if ($_SESSION['user']->admin == 1) { ?>
                     <a class="hover" href="/index.php?action=dash">DashBoard - Users</a>
                     <a class="hover" href="/index.php?action=dashcat">DashBoard - Category</a>
@@ -39,8 +41,8 @@
         <?php } ?>
         <div class="sign-btns">
             <?php if (empty($_SESSION['user'])) { ?>
-                <button aria-label="Sign in page" type="button" onclick="location.href='index.php?action=signIn'">Sign In</button>
-                <button type="button" onclick="location.href='index.php?action=signUp'">Sign Up</button>
+                <button aria-label="Sign in page" type="button" onclick="location.href='index.php?action=signIn'">Connexion</button>
+                <button type="button" onclick="location.href='index.php?action=signUp'">Inscription</button>
             <?php } else { ?>
                 <button aria-label="Profil page" onclick="location.href='index.php?action=profil'"><i class="fa-solid fa-user"></i></button>
                 <button type="button" onclick="location.href='index.php?action=logOut'">Deconnexion</button>

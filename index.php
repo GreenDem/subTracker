@@ -1,6 +1,6 @@
 <?php
 
-// try {
+try {
     require_once __DIR__ . '/config/init.php';
     require_once __DIR__ . '/models/Users.php';
     $action = $_GET['action'] ?? '/';
@@ -37,9 +37,9 @@
 
     require_once(__DIR__ . '/' . $ctrl);
 
-// } catch (Exception $e) {
-//     die('Erreur : ' . $e->getMessage());
-//     die;
-// }
+} catch (Exception $e) {
+    die('Erreur : ' . $e->getMessage());
+    die;
+}
 
 

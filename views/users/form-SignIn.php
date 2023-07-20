@@ -5,11 +5,11 @@
     <form method="post">
         <div>
         <div class="form-div">
-            <label for="mail">Email address</label>
+            <label for="mail">Adresse Email</label>
             <input type="email" id="email" name="mail" required>
             <p class="red"><?= $error['mail'] ?? "" ?></p>
             </div><div class="form-div">
-            <label for="password">Password</label>
+            <label for="password">Mot de passe</label>
             <input type="password" id="password" name="password" required minlength="8">
             <!-- //mi lenght 8 -->
             <p class="red"><?= $error['password'] ?? "" ?></p>

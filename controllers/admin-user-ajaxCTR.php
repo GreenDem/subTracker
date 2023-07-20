@@ -1,5 +1,5 @@
 <?php
- require_once __DIR__ . '/../models/users.php';
+ require_once __DIR__ . '/../models/Users.php';
 
 // On récupère l'input JSON et on le convertit en objet PHP
 $input = json_decode(file_get_contents("php://input"));;

@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../models/rates.php';
+require_once __DIR__ . '/../models/Rates.php';
 Users::checkUser();
 Users::checkAdmin();
 

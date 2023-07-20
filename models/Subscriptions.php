@@ -427,7 +427,7 @@ class Subscriptions
     }
 
 
-    public static function calculCost($price, $rate){
+    public static function calculCost($price, $rate) :float{
         $date = new DateTime();
         $totalDay = $date->format('t');
 
@@ -435,13 +435,13 @@ class Subscriptions
             case 'Quotidienne':
                 return $price*$totalDay;
                 break;
-            case 'Mensuel':
+            case 'Mensuelle':
                 return $price;
                 break;
-            case 'Trimestriel':
+            case 'Trimestrielle':
                 return ($price/3);
                 break;
-            case 'Annuel':
+            case 'Annuelle':
                 return ($price/12);
                 break;
             default:
@@ -462,10 +462,10 @@ class Subscriptions
             case 'Quotidienne':
                 return $price*$totalDay;
                 break;
-            case 'Mensuel':
+            case 'Mensuelle':
                 return $price;
                 break;
-            case 'Trimestriel':
+            case 'Trimestrielle':
                 $trimDate = new DateTime($datePayment);
                 $trimDate = $trimDate->modify('+ 3 months');
                 $trimDate = $trimDate->format('m');
@@ -481,7 +481,7 @@ class Subscriptions
                     return 0;
                 }
                 break;
-            case 'Annuel':
+            case 'Annuelle':
                 
                 if ($month == $month2){
                 return ($price);

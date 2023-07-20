@@ -23,14 +23,14 @@
                 </div>
 
                 <div class="form-div">
-                    <label for="password" >Password</label>
+                    <label for="password" >Mot de passe</label>
                     <input type="password"  id="password" name="password" required minlength="8">
                     <!-- //mi lenght 8 -->
                     <p class="red"><?= $error['password'] ?? "" ?></p>
                 </div>
 
                 <div class="form-div">
-                    <label for="passwordCtr" >Confirmation</label>
+                    <label for="passwordCtr" >Confirmation du mot de passe</label>
                     <input type="password"  id="passwordCtr" required name="passwordCtr" minlength="8">
                     <p class="red"><?= $error['password'] ?? "" ?></p>
                 </div>

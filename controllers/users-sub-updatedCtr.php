@@ -93,7 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $isSubAdded = $subscription->update($subscriptions->idSubscription);
 
         if ($isSubAdded === true) {
-            SessionFlash::setMessage('L\'abonnement à bien été modifié');
+            SessionFlash::setMessage('L\'abonnement a bien été modifié');
             header('location: /index.php?action=subHome');
             die;
         } else {

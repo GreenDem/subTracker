@@ -11,12 +11,12 @@
 </div>
 <div class="botContainer">
     <div class="leftContent">
-        <div class="img-bot"><img src="/Logo/icons8-information-64.png" alt="icone information"></div>
-        <p>SubTracker est un outil permettant de savoir combien vous coute vos abonnements et gerer vos prélémenent chaque mois.</p>
+        <div class="img-bot"><img src="/public/assets/img/icons8-information-64.png" alt="icone information"></div>
+        <p>SubTracker est un outil vous permettant de savoir combien vous coûte vos abonnements et de gérer vos prélèmenents chaque mois.</p>
     </div>
     <div class="rightContent">
-    <div class="img-bot"><img src="/Logo/icons8-requirements-64.png" alt="icone information"></div>
-        <p>Facile d'utilisation, ajoutez vos abonnements et vous aurez un recapitulatif directement sur votre espace personnel.</p>
+    <div class="img-bot"><img src="/public/assets/img/icons8-requirements-64.png" alt="icone information"></div>
+        <p>Facile d'utilisation, ajoutez vos abonnements et vous aurez un récapitulatif directement sur votre espace personnel.</p>
 
 
     </div>
