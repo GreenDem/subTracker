@@ -9,7 +9,6 @@ let deleteModalhref = document.getElementById('href')
 deleteModal.forEach(trash => {
     trash.addEventListener('click', (e) =>{
         let bob =JSON.parse(e.target.parentElement.dataset.user)
-        console.log(bob);
         deleteModalName.innerText = bob.lastname + ' '+ bob.firstname
         deleteModalhref.href = '/../index.php?action=aDeleted&id=' + bob.idUser
     })
