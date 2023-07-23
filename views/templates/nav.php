@@ -45,7 +45,7 @@
                 <button type="button" onclick="location.href='index.php?action=signUp'">Inscription</button>
             <?php } else { ?>
                 <button aria-label="Profil page" onclick="location.href='index.php?action=profil'"><i class="fa-solid fa-user"></i></button>
-                <button type="button" onclick="location.href='index.php?action=logOut'">Deconnexion</button>
+                <button type="button" onclick="location.href='index.php?action=logOut'">Déconnexion</button>
             <?php } ?>
         </div>
     </div>

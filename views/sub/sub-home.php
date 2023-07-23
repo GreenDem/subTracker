@@ -5,7 +5,7 @@
 
         <?php } else {?>
     <p>Bonjour <?= $users->firstname ?>,</p>
-    <p>Cout mensuel moyen <?= $cost ?> €</p>
+    <p>Coût mensuel moyen <?= $cost ?> €</p>
     <p>Ce mois-ci tes paiements seront de <?= $payment ?> €</p>
     <?php } ?>
 </div>

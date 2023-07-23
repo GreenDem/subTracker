@@ -12,7 +12,7 @@
 <div class="botContainer">
     <div class="leftContent">
         <div class="img-bot"><img src="/public/assets/img/icons8-information-64.png" alt="icone information"></div>
-        <p>SubTracker est un outil vous permettant de savoir combien vous coûte vos abonnements et de gérer vos prélèmenents chaque mois.</p>
+        <p>SubTracker est un outil vous permettant de savoir combien vous coûtent vos abonnements et de gérer vos prélèvemenents chaque mois.</p>
     </div>
     <div class="rightContent">
     <div class="img-bot"><img src="/public/assets/img/icons8-requirements-64.png" alt="icone information"></div>
