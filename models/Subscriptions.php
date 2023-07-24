@@ -110,7 +110,7 @@ class Subscriptions
         return $this->_price;
     }
 
-        // ******************** Label ******************** //
+    // ******************** Label ******************** //
 
     /**
      * @param string $label
@@ -220,7 +220,7 @@ class Subscriptions
         return $this->_idUser;
     }
 
-        // ******************** id Category ******************** //
+    // ******************** id Category ******************** //
 
     /**
      * @param int $idCategory
@@ -239,7 +239,7 @@ class Subscriptions
         return $this->_idCategory;
     }
 
-    // ******************** ADD ******************** // --- parametre nullable a lors de l'hydratation
+    // ******************** ADD ******************** // 
     /**
      * @return bool
      */
@@ -373,7 +373,7 @@ class Subscriptions
         }
     }
 
-        // ******************** Delete By Users ******************** //
+    // ******************** Delete By Users ******************** //
     /**
      * @param int $id
      * 
@@ -406,14 +406,14 @@ class Subscriptions
         $db = Database::getInstance();
 
 
-        $sql= 'SELECT 
+        $sql = 'SELECT 
         `categories`.`category`,
         `subscriptions`.`idSubscription`,
         `subscriptions`.`label`,
         `subscriptions`.`price`,
         `rates`.`rates`,
         `subscriptions`.`date_payment`
-         FROM `users`
+        FROM `users`
         LEFT JOIN `subscriptions`
         ON `users`.`idUser` = `subscriptions`.`idUser`
         INNER JOIN `categories`
@@ -432,73 +432,74 @@ class Subscriptions
     }
 
 
-    public static function calculCost($price, $rate) :float{
+    public static function calculCost($price, $rate): float
+    {
         $date = new DateTime();
-        $totalDay = $date->format('t');
+        // $totalDay = $date->format('t');
 
         switch ($rate) {
             case 'Quotidienne':
-                return $price*$totalDay;
+                return ($price * 364.25) / 12;
                 break;
             case 'Mensuelle':
                 return $price;
                 break;
             case 'Trimestrielle':
-                return ($price/3);
+                return ($price / 3);
                 break;
             case 'Annuelle':
-                return ($price/12);
+                return ($price / 12);
                 break;
             default:
-                return 'error';
+                return 0;
                 break;
         }
     }
 
-    public static function calculPayment($price, $rate, $datePayment){
+    public static function calculPayment($price, $rate, $datePayment)
+    {
         $date = new DateTime();
         $totalDay = $date->format('t');
         $month = $date->format('m');
         $date2 = new DateTime($datePayment);
         $month2 = $date2->format('m');
-        
 
-        switch ($rate) {
-            case 'Quotidienne':
-                return $price*$totalDay;
-                break;
-            case 'Mensuelle':
-                return $price;
-                break;
-            case 'Trimestrielle':
-                $trimDate = new DateTime($datePayment);
-                $trimDate = $trimDate->modify('+ 3 months');
-                $trimDate = $trimDate->format('m');
-                $trimDate2 = new DateTime($datePayment);
-                $trimDate2 = $trimDate2->modify('+ 6 months');
-                $trimDate2 = $trimDate2->format('m');
-                $trimDate3 = new DateTime($datePayment);
-                $trimDate3 = $trimDate3->modify('+ 9 months');
-                $trimDate3 = $trimDate3->format('m');
-                if (($month == $month2) || ($month == $trimDate) || ($month == $trimDate2) || ($month == $trimDate3)){
+        if ($date2 <= $date) {
+            switch ($rate) {
+                case 'Quotidienne':
+                    return $price * $totalDay;
+                    break;
+                case 'Mensuelle':
                     return $price;
-                } else {
+                    break;
+                case 'Trimestrielle':
+                    $trimDate = new DateTime($datePayment);
+                    $trimDate = $trimDate->modify('+ 3 months');
+                    $trimDate = $trimDate->format('m');
+                    $trimDate2 = new DateTime($datePayment);
+                    $trimDate2 = $trimDate2->modify('+ 6 months');
+                    $trimDate2 = $trimDate2->format('m');
+                    $trimDate3 = new DateTime($datePayment);
+                    $trimDate3 = $trimDate3->modify('+ 9 months');
+                    $trimDate3 = $trimDate3->format('m');
+
+                    // Je vérifie si c est le mois de paiement
+
+                    if (($month == $month2) || ($month == $trimDate) || ($month == $trimDate2) || ($month == $trimDate3)) {
+                        return $price;
+                    }
                     return 0;
-                }
-                break;
-            case 'Annuelle':
-                
-                if ($month == $month2){
-                return ($price);
-                } else {
-                return 0;
-                }
-                break;
-            
-            default:
-                return 'error';
-                break;
+                    break;
+                case 'Annuelle':
+                    if ($month == $month2) {
+                        return ($price);
+                    }
+                    return 0;
+                    break;
+                default:
+                    return 0;
+                    break;
+            }
         }
     }
-
 }
